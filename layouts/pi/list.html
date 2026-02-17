@@ -2,7 +2,7 @@
 <section class="pi-hero">
   <div class="container pi-grid">
     <div class="pi-photo">
-      <img src="/images/team/jihong_min.jpg" alt="Jihong Min">
+      <img src="{{ "images/team/jihong_min.jpg" | relURL }}" alt="Jihong Min">
     </div>
     <div class="pi-intro">
       <h1>Jihong Min</h1>
@@ -11,8 +11,8 @@
       <p>He received his B.S. in Electrical Engineering at University of Illinois at Urbana-Champaign and Ph.D. in Medical Engineering at California Institute of Technology.</p>
       <p>His research interests include energy harvesting, wearable biosensors, and ingestible electronics.</p>
       <div class="pi-links">
-        <a href="/pi/#about" class="btn btn-outline">About Me</a>
-        <a href="/files/jihong_min_cv.pdf" class="btn btn-outline" target="_blank">CV</a>
+        <a href="{{ "pi/#about" | relURL }}" class="btn btn-outline">About Me</a>
+        <a href="{{ "files/jihong_min_cv.pdf" | relURL }}" class="btn btn-outline" target="_blank">CV</a>
         <a href="{{ .Site.Params.google_scholar }}" class="btn btn-outline" target="_blank" rel="noopener">Google Scholar</a>
       </div>
     </div>
@@ -59,7 +59,7 @@
 <section class="section bg-light">
   <div class="container">
     <h2 class="section-title text-navy">Major Publications</h2>
-    <p><a href="/publications/" class="text-gold">View All Publications</a></p>
+    <p><a href="{{ "publications/" | relURL }}" class="text-gold">View All Publications</a></p>
     {{ $pubs := sort (where .Site.Data.publications "Category" "Selected") "Paper_Number" "desc" }}
     {{ range first 7 $pubs }}
     <div class="publication-entry">

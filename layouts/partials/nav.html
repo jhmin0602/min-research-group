@@ -1,12 +1,12 @@
 <header class="site-header">
   <div class="container">
-    <a href="/" class="site-logo">Min Research Group <span class="logo-accent">@NUS</span></a>
+    <a href="{{ .Site.BaseURL }}" class="site-logo">Min Research Group <span class="logo-accent">@NUS</span></a>
     <button class="menu-toggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
     <nav class="site-nav">
       {{ range .Site.Menus.main }}
-        <a href="{{ .URL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} active{{ end }}">{{ .Name }}</a>
+        <a href="{{ .URL | relURL }}" class="nav-link{{ if $.IsMenuCurrent "main" . }} active{{ end }}">{{ .Name }}</a>
       {{ end }}
     </nav>
   </div>

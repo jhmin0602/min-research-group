@@ -5,7 +5,7 @@
       <h1>Welcome to<br><span class="text-navy">Min Research Group</span></h1>
       <p class="hero-description">We are developing the next generation of wearable, ingestible, and implantable platforms that enable continuous biochemical monitoring and responsive therapy.</p>
       <div class="hero-actions">
-        <a href="/research/" class="btn btn-primary">Our Research</a>
+        <a href="{{ "research/" | relURL }}" class="btn btn-primary">Our Research</a>
         <div class="social-icons">
           {{ with .Site.Params.google_scholar }}<a href="{{ . }}" target="_blank" rel="noopener" title="Google Scholar">GS</a>{{ end }}
           {{ with .Site.Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener" title="LinkedIn">in</a>{{ end }}
@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="hero-image">
-      <img src="/images/hero/hero1.jpg" alt="Research device" loading="lazy">
+      <img src="{{ "images/hero/hero1.jpg" | relURL }}" alt="Research device" loading="lazy">
     </div>
   </div>
 </section>
@@ -45,7 +45,7 @@
       <div class="opportunities-box">
         <h2 class="section-title">Opportunities</h2>
         <p>We welcome <strong>graduate students</strong>, <strong>postdoctoral researchers</strong>, <strong>undergraduate students</strong>, and <strong>visiting affiliates</strong> from BME, ChemE, MatSE, EE, MechE, or related disciplines.</p>
-        <a href="/join/" class="btn btn-primary">Join us!</a>
+        <a href="{{ "join/" | relURL }}" class="btn btn-primary">Join us!</a>
       </div>
     </div>
   </div>
@@ -66,7 +66,7 @@
     </div>
     {{ end }}
     <div class="center-action">
-      <a href="/publications/" class="btn btn-secondary">View all publications</a>
+      <a href="{{ "publications/" | relURL }}" class="btn btn-secondary">View all publications</a>
     </div>
   </div>
 </section>

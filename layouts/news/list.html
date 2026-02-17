@@ -36,7 +36,7 @@
         <h2>Journal Covers</h2>
         <div class="covers-gallery">
           {{ range (readDir "static/images/covers") }}
-          <img src="/images/covers/{{ .Name }}" alt="Journal cover" loading="lazy" class="cover-img">
+          <img src="{{ (printf "images/covers/%s" .Name) | relURL }}" alt="Journal cover" loading="lazy" class="cover-img">
           {{ end }}
         </div>
       </div>

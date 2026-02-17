@@ -724,6 +724,15 @@ img { max-width: 100%; height: auto; display: block; }
   object-fit: contain;
   padding: 0.5rem;
 }
+/* Zoom in on the ingestible electronics card image (3rd card) */
+.research-card:last-child .research-card-image img {
+  object-fit: contain;
+  transform: scale(1.6);
+}
+
+.research-section-heading {
+  font-size: 1.5rem;
+}
 
 .research-card-body {
   padding: 1.5rem;

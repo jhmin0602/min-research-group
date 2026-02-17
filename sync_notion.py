@@ -345,6 +345,12 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
             "#": r"\#",
             "_": r"\_",
             "~": r"\textasciitilde{}",
+            "α": r"$\alpha$",
+            "β": r"$\beta$",
+            "γ": r"$\gamma$",
+            "δ": r"$\delta$",
+            "μ": r"$\mu$",
+            "†": r"$\dagger$",
         }
         for old, new in replacements.items():
             text = text.replace(old, new)
@@ -470,14 +476,25 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
                 continue  # Already added before Honors
             latex_title = section_map.get(item["Section"], item["Name"])
             lines.append(f"\\section{{{latex_title}}}")
-            for content_line in item["Content"].split("\n"):
+            in_list = False
+            content_lines = item["Content"].split("\n")
+            for content_line in content_lines:
                 content_line = content_line.strip()
-                if not content_line:
-                    lines.append("")
-                elif content_line.startswith("- "):
+                if content_line.startswith("- "):
+                    if not in_list:
+                        lines.append(r"\begin{itemize}[leftmargin=*, nosep]")
+                        in_list = True
                     lines.append(f"  \\item {escape_latex(content_line[2:])}")
                 else:
-                    lines.append(f"{escape_latex(content_line)} \\\\")
+                    if in_list:
+                        lines.append(r"\end{itemize}")
+                        in_list = False
+                    if not content_line:
+                        lines.append("\\vspace{4pt}")
+                    else:
+                        lines.append(f"{escape_latex(content_line)} \\\\")
+            if in_list:
+                lines.append(r"\end{itemize}")
             lines.append("")
 
     lines.append(r"\end{document}")

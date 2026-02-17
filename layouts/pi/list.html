@@ -67,6 +67,7 @@
         <span class="pub-authors">{{ .Authors }}</span>
         ({{ .Year }}). {{ .Title }}.
         <em class="pub-journal">{{ .Journal }}</em>{{ with .Volume_Pages }}, {{ . }}{{ end }}.
+        {{ with .PDF_Link }}<a href="{{ strings.TrimPrefix "/" . | relURL }}" class="pub-pdf" target="_blank" rel="noopener">PDF</a>{{ end }}
         {{ with .Notes }}<br><span class="pub-note">{{ . }}</span>{{ end }}
       </p>
     </div>

@@ -65,6 +65,7 @@
         <span class="pub-authors">{{ .Authors }}</span>
         ({{ .Year }}). {{ .Title }}.
         <em class="pub-journal">{{ .Journal }}</em>{{ with .Volume_Pages }}, {{ . }}{{ end }}.
+        {{ with .PDF_Link }}<a href="{{ strings.TrimPrefix "/" . | relURL }}" class="pub-pdf" target="_blank" rel="noopener">PDF</a>{{ end }}
         {{ with .Notes }}<br><span class="pub-note">{{ . }}</span>{{ end }}
       </p>
     </div>
@@ -77,14 +78,22 @@
 
 <section class="section bg-light">
   <div class="container">
-    <h2 class="section-title text-navy">Group News</h2>
+    <h2 class="section-title text-navy">Latest News & Media</h2>
     {{ $news := sort .Site.Data.news "Year" "desc" }}
-    {{ range $news }}
+    {{ range first 8 $news }}
     <div class="news-entry">
       <span class="news-year">{{ .Year }}</span>
-      <p>{{ .Headline }}</p>
+      <p>
+        {{ with .URL }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}
+        {{ .Headline }}
+        {{ with .URL }}</a>{{ end }}
+        {{ with .Source }}<span class="news-source">, {{ . }}</span>{{ end }}
+      </p>
     </div>
     {{ end }}
+    <div class="center-action">
+      <a href="{{ "news/" | relURL }}" class="btn btn-secondary">View all news & media</a>
+    </div>
   </div>
 </section>
 {{ end }}

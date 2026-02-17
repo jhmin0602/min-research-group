@@ -1,10 +1,632 @@
 [
   {
-    "Headline": "Dr. Min will join the Department of Biomedical Engineering at NUS as a Presidential Young Professor in Spring 2026",
-    "Source": "Min Research Group",
-    "Date": "2026-01-01",
-    "URL": "",
-    "Type": "Group News",
-    "Year": 2026
+    "Headline": "Swallow this pill to learn about your gut and health",
+    "URL": "https://www.foxnews.com/tech/swallow-pill-learn-about-your-gut-health",
+    "Source": "Fox News",
+    "Year": 2025,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Powerful pill can reveal what's going on in your gut \u2014 thanks to miniature sensors",
+    "URL": "https://nypost.com/2025/06/29/health/powerful-pill-can-reveal-whats-going-on-in-your-gut/",
+    "Source": "New York Post",
+    "Year": 2025,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "New \"Smart Capsule\" to Study the Health of the GI Tract",
+    "URL": "https://www.caltech.edu/about/news/new-smart-capsule-to-study-the-health-of-the-gi-tract",
+    "Source": "Caltech News",
+    "Year": 2025,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Smart mask converts every breath into a mini health check-up",
+    "URL": "https://www.nhlbi.nih.gov/news/2024/smart-mask-converts-every-breath-mini-health-check",
+    "Source": "NIH NHLBI",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Facemasks of the Future",
+    "URL": "https://whatayear.org/stories/facemasks-of-the-future/",
+    "Source": "What A Year!",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Smart mask for monitoring chemicals in exhaled breath",
+    "URL": "https://www.nih.gov/news-events/nih-research-matters/smart-mask-monitoring-chemicals-exhaled-breath",
+    "Source": "National Institutes of Health",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Smart Mask Enables Real-Time Breath Biomarker Monitoring",
+    "URL": "https://theanalyticalscientist.com/fields-applications/smart-mask-enables-real-time-monitoring-of-breath-biomarkers",
+    "Source": "The Analytical Scientist",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "'Smart mask' could detect asthma, COPD and other medical conditions, researchers say",
+    "URL": "https://www.foxnews.com/health/smart-mask-could-detect-asthma-copd-medical-conditions-researchers-say",
+    "Source": "Fox News",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "New High-Tech Mask Uses Breath to Check Your Health",
+    "URL": "https://www.usnews.com/news/health-news/articles/2024-09-03/new-high-tech-mask-uses-breath-to-check-your-health",
+    "Source": "US News",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Every breath you take, this mask will be watching your health",
+    "URL": "https://www.science.org/content/article/every-breath-you-take-mask-will-be-watching-your-health",
+    "Source": "Science",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Scientists Have Developed A 'Smart' Face Mask That Can Help Monitor Asthma, COPD and More",
+    "URL": "https://www.forbes.com/sites/saibala/2024/08/30/scientists-have-developed-a-smart-face-mask-that-can-help-monitor-asthma-copd-and-more/",
+    "Source": "Forbes",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Smart Mask for Breath Monitoring and Diagnosis of Respiratory Diseases",
+    "URL": "https://www.repubblica.it/salute/2024/08/29/news/mascherina_smart_monitoraggio_respiro_malattie-423468099/",
+    "Source": "la Repubblica",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "'Smart mask' analyses breath for signs of medical conditions",
+    "URL": "https://www.theengineer.co.uk/content/news/smart-mask-analyses-breath-for-signs-of-medical-conditions",
+    "Source": "The Engineer",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Smart mask monitors breath for disease",
+    "URL": "https://cen.acs.org/analytical-chemistry/diagnostics/Smart-mask-monitors-breath-disease/102/i27",
+    "Source": "Chemical & Engineering News",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "New smart mask tracks indicators of asthma, kidney disease through breath",
+    "URL": "https://interestingengineering.com/health/smart-mask-analyzes-chemicals-track-disease",
+    "Source": "Interesting Engineering",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Low cost 'smart mask' can detect disease from breath, researchers say",
+    "URL": "https://www.theguardian.com/science/article/2024/aug/29/smart-mask-detect-disease-breath",
+    "Source": "The Guardian",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "A smart mask that can monitor your health through your breath",
+    "URL": "https://www.telegraph.co.uk/news/2024/08/29/smart-mask-one-dollar-monitor-illness-breath-health/",
+    "Source": "The Telegraph",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "A new smart mask analyzes your breath to monitor your health",
+    "URL": "https://www.technologyreview.com/2024/08/29/1103330/a-new-smart-mask-analyzes-your-breath-to-monitor-your-health/",
+    "Source": "MIT Technology Review",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Smart Mask Monitors Breath for Signs of Health",
+    "URL": "https://www.caltech.edu/about/news/smart-mask-monitors-breath-for-signs-of-health",
+    "Source": "Caltech News",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Wireless real-time monitoring of oestradiol in sweat",
+    "URL": "https://www.nature.com/articles/s41928-024-01128-w",
+    "Source": "Nature Electronics",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Sense and\u2026 Fertility",
+    "URL": "https://theanalyticalscientist.com/techniques-tools/sense-and-fertility",
+    "Source": "The Analytical Scientist",
+    "Year": 2024,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Wearable biosensor measures fertility hormones in sweat",
+    "URL": "https://www.nature.com/articles/d41586-023-03812-x",
+    "Source": "Nature",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Energy Harvesting for Wearable Technology Steps Up",
+    "URL": "https://spectrum.ieee.org/energy-harvesting-wearable-tech",
+    "Source": "IEEE Spectrum",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "A new noninvasive patch could monitor a vital hormone",
+    "URL": "https://www.popsci.com/technology/sweat-sensor-hormones/",
+    "Source": "Popular Science",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Wearable Patch Wirelessly Monitors Estrogen in Sweat",
+    "URL": "https://www.caltech.edu/about/news/wearable-patch-wirelessly-monitors-estrogen-in-sweat",
+    "Source": "Caltech News",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Falling Walls Science Breakthrough of the Year 2023",
+    "URL": "https://falling-walls.com/press-releases/falling-walls-science-breakthrough-of-the-year-2023-these-groundbreaking-ideas-compete-for-the-title/",
+    "Source": "Falling Walls",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Continuous sweat monitoring on the go",
+    "URL": "https://www.nature.com/articles/s41928-023-01017-8",
+    "Source": "Nature Electronics",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Perovskite Cells Meet Wearable Biosensor's Power Demands",
+    "URL": "https://www.photonics.com/Articles/Perovskite_Cells_Meet_Wearable_Biosensors_Power/a69194",
+    "Source": "Photonics.com",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "New Wearable Sensor Sets Record for Solar Power Efficiency",
+    "URL": "https://www.caltech.edu/about/news/-solar-powered-sweat-sensor",
+    "Source": "Caltech News",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Wearable noninvasive sensor monitors sweat for signs of inflammation",
+    "URL": "https://newatlas.com/medical/wearable-noninvasive-sensor-monitors-sweat-signs-of-inflammation/",
+    "Source": "New Atlas",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Wearable Sweat Sensor Detects Molecular Hallmark of Inflammation",
+    "URL": "https://www.caltech.edu/about/news/wearable-sweat-sensor-detects-molecular-hallmark-of-inflammation",
+    "Source": "Caltech News",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Electric bandages heal wounds that won't close, animal study shows",
+    "URL": "https://www.scientificamerican.com/article/electric-bandages-heal-wounds-that-wont-close-animal-study-shows/",
+    "Source": "Scientific American",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Researcher developed skin for robots",
+    "URL": "https://wired.me/technology/researcher-developed-skin-for-robots/",
+    "Source": "Wired",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Miniature smart bandage for chronic wounds with electric stimulation",
+    "URL": "https://www.thehindu.com/sci-tech/science/miniature-smart-bandage-chronic-wounds-electric-stimulation-wireless/article66922727.ece",
+    "Source": "The Hindu",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Inventing a \"Smart\" Bandage for Chronic Wounds",
+    "URL": "https://www.aiche.org/resources/publications/cep/2023/may/cep-news-update/inventing-smart-bandage-chronic-wounds",
+    "Source": "CEP (AICHE)",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "A smart bandage",
+    "URL": "https://pubs.aip.org/physicstoday/article/76/5/64/2886767/A-smart-bandage",
+    "Source": "Physics Today",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "5Ws of a Smart Bandage",
+    "URL": "https://www.techbriefs.com/component/content/article/tb/pub/features/five-ws/48074",
+    "Source": "Tech Briefs",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Diabetes: a smart dressing to treat and heal chronic wounds",
+    "URL": "https://www.lemonde.fr/sciences/article/2023/04/28/diabete-un-pansement-intelligent-pour-soigner-et-cicatriser-les-plaies-chroniques_6171323_1650684.html",
+    "Source": "Le Monde",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Smart Bandage Aims to Facilitate Recovery",
+    "URL": "https://www.techbriefs.com/component/content/article/tb/stories/blog/47954",
+    "Source": "Tech Briefs",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Smart bandages can monitor wounds, aid healing, researchers say",
+    "URL": "https://www.upi.com/Health_News/2023/03/24/smart-bandages-wounds-Caltech/9281679674149/",
+    "Source": "UPI",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Smart bandages with biosensors to help heal chronic diabetic wounds",
+    "URL": "https://www.businessinsider.in/science/news/smart-bandages-with-biosensors-to-help-heal-chronic-diabetic-wounds/articleshow/99028641.cms",
+    "Source": "Business Insider",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "This Smart Bandage Zaps Your Wounds to Heal Them Faster",
+    "URL": "https://www.thedailybeast.com/this-smart-bandage-zaps-your-chronic-wounds-to-heal-them-faster",
+    "Source": "The Daily Beast",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Electronic wound dressing releases drugs to help injuries heal",
+    "URL": "https://www.newscientist.com/article/2365879-electronic-wound-dressing-releases-drugs-to-help-injuries-heal/",
+    "Source": "New Scientist",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Smart bandage with biosensors could help chronic wounds heal",
+    "URL": "https://www.theguardian.com/science/2023/mar/24/smart-bandage-with-biosensors-could-help-chronic-wounds-heal-study-claims",
+    "Source": "The Guardian",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "'Smart' Bandages Monitor Wounds and Provide Targeted Treatment",
+    "URL": "https://www.caltech.edu/about/news/smart-bandages-monitor-wounds-and-provide-targeted-treatment",
+    "Source": "Caltech News",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Like On-the-Skin Labs, Sweat Sensors Assess Biomarkers",
+    "URL": "https://www.cancer.org/latest-news/on-the-skin-labs-sweat-sensors.html",
+    "Source": "American Cancer Society",
+    "Year": 2023,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "New Wearable Sensor Detects Even More Compounds in Human Sweat",
+    "URL": "https://www.caltech.edu/about/news/new-wearable-sensor-detects-even-more-compounds-in-human-sweat",
+    "Source": "Caltech News",
+    "Year": 2022,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "How Caltech Scientists Shifted Gears to Fight COVID-19",
+    "URL": "https://magazine.caltech.edu/post/covid-19-research-update",
+    "Source": "Caltech Magazine",
+    "Year": 2022,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Electronic Skin Lets Humans Feel What Robots Do\u2014And Vice Versa",
+    "URL": "https://www.scientificamerican.com/article/electronic-skin-lets-humans-feel-what-robots-do-mdash-and-vice-versa/",
+    "Source": "Scientific American",
+    "Year": 2022,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Robots gain sense of touch with new artificial skin",
+    "URL": "https://www.independent.co.uk/tech/robots-artificial-skin-caltech-robotics-b2093483.html",
+    "Source": "The Independent",
+    "Year": 2022,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "This Strange New Electronic Skin Can Let Robots Sniff Out Explosives and COVID",
+    "URL": "https://www.thedailybeast.com/electronic-skin-from-caltech-scientists-lets-robots-sniff-explosives-chemicals-and-covid-virus",
+    "Source": "Daily Beast, Yahoo News, MSN",
+    "Year": 2022,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Artificial Skin Gives Robots Sense of Touch and Beyond",
+    "URL": "https://www.caltech.edu/about/news/artificial-skin-gives-robots-sense-of-touch-and-beyond",
+    "Source": "Caltech News",
+    "Year": 2022,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Caltech Research Group to Unveil Miniature Wearable and Handheld Sensors For At-Home Health Monitoring",
+    "URL": "https://www.pasadenanow.com/main/caltech-research-group-to-unveil-miniature-wearable-and-hand-held-sensors-for-at-home-health-monitoring",
+    "Source": "Pasadena Now",
+    "Year": 2021,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "U.S. university develops COVID-19 testing kit using sensors",
+    "URL": "https://newsus.cgtn.com/news/2020-10-21/U-S-university-develops-COVID-19-testing-kit-using-sensors-UKLKZPc1kQ/index.html",
+    "Source": "CGTV",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Coronavirus test results may come from home and within minutes",
+    "URL": "https://www.youtube.com/watch",
+    "Source": "BBC",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "The 5 Coolest Things On Earth This Week",
+    "URL": "https://www.ge.com/news/reports/the-5-coolest-things-on-earth-this-week-0",
+    "Source": "GE",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Quick test: 5-cent sensor should be able to detect coronavirus in 10 minutes",
+    "URL": "https://www.msn.com/es-mx/noticias/tecnologia/este-sensor-diagnostica-contagio-de-covid-19-en-casa-y-en-menos-de-10-minutos/ar-BB19Ujr9",
+    "Source": "MSN",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "New Device Powers Wearable Sensors Through Human Motion",
+    "URL": "https://www.caltech.edu/about/news/new-device-powers-wearable-sensors-through-human-motion",
+    "Source": "Caltech News",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "This sensor diagnoses contagion of COVID-19 at home and in less than 10 minutes",
+    "URL": "https://www.forbes.com.mx/tecnologia-este-sensor-diagnostica-contagio-de-covid-19-en-casa-y-en-menos-de-10-minutos/",
+    "Source": "Forbes",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "RapidPlex aims for swift home COVID-19 tests",
+    "URL": "https://www.theengineer.co.uk/covid-19-asymptomatic-10-minute-test-rapidplex/",
+    "Source": "The Engineer",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "A 5-cent sensor could detect the coronavirus in 10 minutes at home",
+    "URL": "https://www.fastcompany.com/90559744/a-5-cent-sensor-could-detect-the-coronavirus-in-10-minutes-at-home",
+    "Source": "Fast Company",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Caltech Researcher Unveils Sensor that Rapidly Detects COVID-19 Infection Status, Severity, and Immunity",
+    "URL": "https://www.caltech.edu/about/news/caltech-researcher-unveils-sensor-rapidly-and-simultaneously-detects-covid-19-infection-status-severity-and-immunity",
+    "Source": "Caltech News",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Caltech's Sweat-Powered E-Skin Could be Used to Power Future Robotics",
+    "URL": "https://news.yahoo.com/caltech-sweat-powered-e-skin-130010490.html",
+    "Source": "Yahoo News",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Biomedical device for health monitoring is powered by sweat",
+    "URL": "https://www.iom3.org/materials-world-magazine/news/2020/jun/03/biomedical-device-health-monitoring-powered-sweat",
+    "Source": "Materials World Magazine (IOM3)",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Future Vaccines, Wearable Bio-sensors, Tissue Engineering and Aerospace Navigation: Meet the 2020 Cohort of Young Scientists",
+    "URL": "https://www.weforum.org/press/2020/05/future-vaccines-wearable-bio-sensors-tissue-engineering-and-aerospace-navigation-meet-the-2020-cohort-of-young-scientists-387d733b8b",
+    "Source": "World Economic Forum",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Class of 2020 Brochure",
+    "URL": "http://www3.weforum.org/docs/WEF_Young_Scientist_Community_Brochure_2020.pdf",
+    "Source": "World Economic Forum",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Electronic skins sweat it out",
+    "URL": "https://www.nature.com/articles/s41928-020-0420-1",
+    "Source": "Nature Electronics",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Global Air Pollution Drop, Electronic Skin and Brain Machines",
+    "URL": "https://www.insidescience.org/video/global-air-pollution-drop-electronic-skin-and-brain-machines",
+    "Source": "Inside Science",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Human sweat-powered e-skin points to future robotics",
+    "URL": "https://www.theengineer.co.uk/human-sweat-e-skin-robots-medical-devices/",
+    "Source": "The Engineer",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Your sweat powers this wearable",
+    "URL": "https://www.cnet.com/news/your-sweat-powers-this-wearable/",
+    "Source": "CNET",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Researchers develop electronic skin that can monitor your health",
+    "URL": "https://www.bignewsnetwork.com/news/264797528/researchers-develop-electronic-skin-that-can-monitor-your-health",
+    "Source": "Big News Network",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Your next fitness wearable could be sweat-powered",
+    "URL": "https://www.inverse.com/innovation/sweat-powered-health-monitor",
+    "Source": "Inverse",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "A smart second skin gets all the power it needs from sweat",
+    "URL": "https://theconversation.com/a-smart-second-skin-gets-all-the-power-it-needs-from-sweat-136831",
+    "Source": "The Conversation",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "A smart second skin gets all the power it needs from sweat",
+    "URL": "https://news.yahoo.com/smart-second-skin-gets-power-184502589.html",
+    "Source": "Yahoo News",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Electronic Skin Fully Powered by Sweat Can Monitor Health, Serve as Human-Machine Interface",
+    "URL": "https://www.caltech.edu/about/news/electronic-skin-fully-powered-sweat-can-monitor-health-serve-human-machine-interface",
+    "Source": "Caltech News",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "The Science of Sweat",
+    "URL": "https://magazine.caltech.edu/post/sweat",
+    "Source": "Caltech Magazine",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Calculating the Unknown: Nanoscience Highlights",
+    "URL": "https://www.kavlifoundation.org/kavli-news/calculating-unknown-nanoscience-highlights#.Xpt_1NNKiWZ",
+    "Source": "The Kavli Foundation",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Watch how a sweat sensor monitors stress levels",
+    "URL": "https://insights.globalspec.com/article/13727/watch-how-a-sweat-sensor-monitors-stress-levels",
+    "Source": "Engineering360 (IEEE GlobalSpec)",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Researchers develop sensor to detect stress from perspiration",
+    "URL": "https://sg.news.yahoo.com/researchers-develop-sensor-detect-stress-perspiration-111233341.html",
+    "Source": "Yahoo News",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "This is Why Graphene Stress Sensors Could Be Used to Test Astronaut Anxiety Levels",
+    "URL": "https://www.azosensors.com/news.aspx",
+    "Source": "Azo Sensors",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "U.S. scientist develops sweat sensor to detect stress levels",
+    "URL": "http://www.xinhuanet.com/english/2020-02/27/c_138824329.htm",
+    "Source": "Xinhua",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Graphene stress monitor could help NASA find right stuff",
+    "URL": "https://www.theengineer.co.uk/graphene-stress-monitor-nasa-right-stuff/",
+    "Source": "The Engineer",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Sweat Sensor Detects Stress Levels; May Find Use in Space Exploration",
+    "URL": "https://www.caltech.edu/about/news/sweat-sensor-detects-stress-levels-may-find-use-space-exploration",
+    "Source": "Caltech News",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Noninvasive Cortisol Detector to Monitor Stress, Mental Conditions",
+    "URL": "https://www.medgadget.com/2020/02/first-noninvasive-cortisol-detector-to-monitor-stress-mental-conditions.html",
+    "Source": "MedGadget",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Sweat Sensor Detects Stress Levels; May Find Use in Space Exploration",
+    "URL": "https://www.sciencedaily.com/releases/2020/02/200226134124.htm",
+    "Source": "Science Daily",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Can a simple sweat sensor replace blood tests?",
+    "URL": "https://physicsworld.com/a/can-a-simple-sweat-sensor-replace-blood-tests/",
+    "Source": "Physics World (IOP)",
+    "Year": 2020,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Mass-producing wearable sensors: No sweat",
+    "URL": "https://stm.sciencemag.org/content/11/522/eaaz9766.full",
+    "Source": "Science Translational Medicine",
+    "Year": 2019,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Wearable Sweat Sensor Detects Gout-Causing Compounds",
+    "URL": "https://www.caltech.edu/about/news/wearable-sweat-sensor-detects-gout-causing-compounds",
+    "Source": "Caltech News",
+    "Year": 2019,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "U.S. researchers develop wearable sweat sensor",
+    "URL": "http://www.xinhuanet.com/english/2019-11/27/c_138587357.htm",
+    "Source": "Xinhua",
+    "Year": 2019,
+    "Type": "Media Report"
+  },
+  {
+    "Headline": "Wearable Sweat Sensor Detects Gout-Causing Compounds",
+    "URL": "https://www.sciencedaily.com/releases/2019/11/191125153011.htm",
+    "Source": "Science Daily",
+    "Year": 2019,
+    "Type": "Media Report"
   }
 ]

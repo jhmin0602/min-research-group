@@ -275,7 +275,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .two-col-aligned {
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 .two-col-aligned .opportunities-box {
@@ -671,7 +671,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ===== RESEARCH BANNER ===== */
 .research-banner {
-  margin: 2rem 0;
+  margin: 1rem 0;
   text-align: center;
 }
 .research-banner img {
@@ -714,14 +714,15 @@ img { max-width: 100%; height: auto; display: block; }
 }
 
 .research-card-image {
-  height: 200px;
+  height: 260px;
   overflow: hidden;
   background: var(--gray-100);
 }
 .research-card-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  padding: 0.5rem;
 }
 
 .research-card-body {

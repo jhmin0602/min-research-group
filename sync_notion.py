@@ -39,6 +39,7 @@ DB_IDS = {
     "honors": "e54123bedbed48e2b3be4bbaeca29f39",
     "education": "b705910d828e43b6b40cc4a6135dd753",
     "projects": "3cbc15cf33644f44afe5efce27f2b2b4",
+    "cv_only": "107046893bcc47a7b15d3fe1f403e831",
 }
 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -300,6 +301,22 @@ def sync_projects():
     return items
 
 
+def sync_cv_only():
+    """Sync CV-only sections database (Research Experience, Teaching, etc.)."""
+    pages = query_all(DB_IDS["cv_only"])
+    items = []
+    for page in pages:
+        props = page["properties"]
+        items.append({
+            "Name": get_text(props.get("Name")),
+            "Section": get_select(props.get("Section")),
+            "Content": get_text(props.get("Content")),
+            "Order": get_number(props.get("Order")),
+        })
+    items.sort(key=lambda x: x.get("Order") or 0)
+    return items
+
+
 def write_json(data, filename):
     """Write data to a JSON file in the data directory."""
     filepath = os.path.join(DATA_DIR, filename)
@@ -308,7 +325,7 @@ def write_json(data, filename):
     print(f"  Wrote {len(data)} items to {filename}")
 
 
-def generate_latex_cv(pubs, honors, education):
+def generate_latex_cv(pubs, honors, education, cv_only=None):
     """Generate a LaTeX CV from the synced data."""
     cv_dir = os.path.join(os.path.dirname(__file__), "cv")
     os.makedirs(cv_dir, exist_ok=True)
@@ -379,6 +396,36 @@ def generate_latex_cv(pubs, honors, education):
         lines.append("\\\\[6pt]")
     lines.append("")
 
+    # CV-only sections: Research Experience
+    if cv_only:
+        # Section name mapping for LaTeX
+        section_map = {
+            "Research Experience": "Research \\& Work Experience",
+            "Teaching & Mentoring": "Teaching and Mentoring",
+            "Conferences & Talks": "Conference Presentations, Poster Sessions, Invited Talks, and Workshops",
+            "Academic Service": "Academic Service",
+            "Proposal Writing": "Proposal Writing Experience",
+            "Patents": "Patents",
+        }
+        # Sections to include before Honors (Research Experience only)
+        for item in cv_only:
+            if item["Section"] == "Research Experience":
+                latex_title = section_map.get(item["Section"], item["Section"])
+                lines.append(f"\\section{{{latex_title}}}")
+                for content_line in item["Content"].split("\n"):
+                    content_line = content_line.strip()
+                    if not content_line:
+                        lines.append("\\\\[6pt]")
+                    elif content_line.startswith("- "):
+                        lines.append(f"\\quad {escape_latex(content_line[2:])}")
+                        lines.append("\\\\")
+                    elif "|" in content_line:
+                        parts = content_line.split("|", 1)
+                        lines.append(f"\\textbf{{{escape_latex(parts[0].strip())}}} \\hfill {escape_latex(parts[1].strip())} \\\\")
+                    else:
+                        lines.append(f"{escape_latex(content_line)} \\\\")
+                lines.append("")
+
     # Honors
     lines.append(r"\section{Honors \& Awards}")
     lines.append(r"\begin{itemize}[leftmargin=*, nosep]")
@@ -408,6 +455,31 @@ def generate_latex_cv(pubs, honors, education):
     lines.append(r"\end{enumerate}")
     lines.append("")
 
+    # CV-only sections after publications
+    if cv_only:
+        section_map = {
+            "Research Experience": "Research \\& Work Experience",
+            "Teaching & Mentoring": "Teaching and Mentoring",
+            "Conferences & Talks": "Conference Presentations, Poster Sessions, Invited Talks, and Workshops",
+            "Academic Service": "Academic Service",
+            "Proposal Writing": "Proposal Writing Experience",
+            "Patents": "Patents",
+        }
+        for item in cv_only:
+            if item["Section"] == "Research Experience":
+                continue  # Already added before Honors
+            latex_title = section_map.get(item["Section"], item["Name"])
+            lines.append(f"\\section{{{latex_title}}}")
+            for content_line in item["Content"].split("\n"):
+                content_line = content_line.strip()
+                if not content_line:
+                    lines.append("")
+                elif content_line.startswith("- "):
+                    lines.append(f"  \\item {escape_latex(content_line[2:])}")
+                else:
+                    lines.append(f"{escape_latex(content_line)} \\\\")
+            lines.append("")
+
     lines.append(r"\end{document}")
 
     tex_path = os.path.join(cv_dir, "jihong_min_cv.tex")
@@ -421,33 +493,37 @@ def main():
     print("Syncing Notion databases to Hugo data files...")
     print()
 
-    print("[1/6] Publications...")
+    print("[1/7] Publications...")
     pubs = sync_publications()
     write_json(pubs, "publications.json")
 
-    print("[2/6] News & Media...")
+    print("[2/7] News & Media...")
     news = sync_news()
     write_json(news, "news.json")
 
-    print("[3/6] Team Members...")
+    print("[3/7] Team Members...")
     team = sync_team()
     write_json(team, "team.json")
 
-    print("[4/6] Honors & Awards...")
+    print("[4/7] Honors & Awards...")
     honors = sync_honors()
     write_json(honors, "honors.json")
 
-    print("[5/6] Education...")
+    print("[5/7] Education...")
     education = sync_education()
     write_json(education, "education.json")
 
-    print("[6/6] Research Projects...")
+    print("[6/7] Research Projects...")
     projects = sync_projects()
     write_json(projects, "projects.json")
 
+    print("[7/7] CV-Only Sections...")
+    cv_only = sync_cv_only()
+    write_json(cv_only, "cv_only.json")
+
     print()
     print("Generating LaTeX CV...")
-    generate_latex_cv(pubs, honors, education)
+    generate_latex_cv(pubs, honors, education, cv_only)
 
     print()
     print("Done! Now run: hugo server")

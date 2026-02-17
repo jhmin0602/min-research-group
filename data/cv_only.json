@@ -1,0 +1,38 @@
+[
+  {
+    "Name": "Research & Work Experience",
+    "Section": "Research Experience",
+    "Content": "2024-2026 | iCMB NIH T32 Postdoctoral Research Fellow, Caltech and UCLA Medicine, USA (Advisors: Prof. Azita Emami, Prof. Wei Gao, Prof. Tzung Hsiai)\n- Development of ingestible electronic systems with electrochemical sensors based on aptamers and enzymes for real time monitoring of metabolites and neurotransmitters in the gastrointestinal tract.\n- Development of a wearable Electrical Impedance Tomography (EIT) belt for accessible liver screening, targeting early detection of non-alcoholic fatty liver disease (NAFLD) with a flexible and fully autonomous system incorporating a conductive polymer hydrogel and a micro-electrode array.\n\n2018-2023 | Graduate Researcher, Caltech, USA (Advisor: Prof. Wei Gao)\n- Development of robust and cost efficient wearable triboelectric nanogenerator and a flexible solar cell based on a quasi-2D perovskite layer with α-methylbenzylamine (MBA) as an additive for efficient and sustainable powering of wearables.\n- Development of novel electrochemical sensors based on enzymes, ion-selective electrodes, antibodies tagged with gold nanoparticles, and molecularly imprinted polymers on laser printed graphene (LEG) and inkjet printed carbon/gold electrodes for sensitive and selective molecular detection in biofluids.\n- Design of miniaturized and low-power wearable/ingestible electronic systems and integration of energy harvesting modules and electrochemical sensors for wireless monitoring of physiochemical biomarkers.\n\n2016-2017 | Undergraduate Researcher, UIUC, USA (Advisor: Prof. Joseph Lyding)\n- Self-assembly of centimeter scale polystyrene microsphere monolayers using Langmuir Blodgett transfer.\n- Fabrication of gold-graphene-gold bowtie structure for exploration of large scale plasmonic field enhancements.\n\n2016-2016 | Summer Undergraduate Researcher, GIST, South Korea (Advisor: Prof. Jae-Hyung Jang)\n- Fabrication of the Metal-Insulator-Metal structure ReRAM devices.",
+    "Order": 1
+  },
+  {
+    "Name": "Teaching & Mentoring",
+    "Section": "Teaching & Mentoring",
+    "Content": "Teaching Assistant:\n- Spring 2018. Theory and Fabrication of Integrated Circuits. ECE 444, UIUC\n\nGuest Lecturer:\n- Spring 2020. New Frontiers in Medical Technologies. MedE 205, Caltech\n- Winter 2021. Sensors in Medicine. MedE 202, Caltech\n- Winters 2023, 2024. Sensors in Medicine. MedE 202, Caltech\n- Summer 2024. Crash Course on Wearables for DIVE Veteran Students, Caltech\n\nResearch Mentor at Caltech (7 female students):\n- Ahyeon Cho (ChemE), Visiting Graduate Student\n- Yonglin Chen (MedE), Graduate Student\n- Hyehyun Kim (MSE), Visiting Graduate Student\n- Hyunah Ahn (ChemE), Visiting Graduate Student\n- Wenzheng Heng (MedE), Graduate Student\n- Rinni Bhansali (EE), Amgen Fellow\n- Nicole Heflin (EE), SURF Fellow\n- Tara Porter (EE), Undergraduate Student\n- Kaliden Drango (EE), SURF Fellow",
+    "Order": 2
+  },
+  {
+    "Name": "Conferences, Talks & Workshops",
+    "Section": "Conferences & Talks",
+    "Content": "Oral Presentation: MRS Fall Meeting & Exhibit, Boston, MA, Nov 2025.\n(Invited) Oral & Poster Presentation: Nature and Health Conference, Brown University, Providence, RI, September 2024 (Best Poster Award).\nWorkshop: NextProf Nexus, University of Michigan, Ann Arbor, MI, August 2024.\n(Invited) Seminar: Caltech's DIVE (Diversification Initiative through Veteran Education) program, Pasadena, CA, August 2024.\n(Invited) Seminar: Korea Advanced Institute of Science and Technology (KAIST), Chemical Engineering, Daejeon, South Korea, July 2024.\n(Invited) Seminar: Gwangju Institute of Science and Technology (GIST), Mechanical Engineering, Gwangju, South Korea, July 2024.\nOral Presentation: SPIE Soft Mechatronics and Wearable Systems Conference, Long Beach, CA, Mar 2024 (Best Paper Award).\nPoster Presentation: Caltech Medical Engineering 10th Year Anniversary Symposium, Pasadena, CA, May 2024.\nOral Presentation: MRS Fall Meeting & Exhibit, Boston, MA, Nov 2023 (Graduate Student Award).\nPoster Presentation: IEEE International Flexible Electronics Technology Conference, San Jose, CA, Aug 2023.",
+    "Order": 3
+  },
+  {
+    "Name": "Academic Service",
+    "Section": "Academic Service",
+    "Content": "Reviewer for Journals and Conferences:\nScience Robotics, Nature Communications, Nature Sensors, Biosensors and Bioelectronics, ACS Photonics, ACS Applied Nano Materials, npj Flexible Electronics, npj Flexible Materials, npj Biomedical Innovations, Electroanalysis, Scientific Reports, Analytical Chemistry, Talanta, IEEE Consumer Electronics Magazine, Electrochemistry Communications, ACS Applied Materials & Interfaces, IEEE Open Journal of Engineering in Medicine and Biology, Sensors & Diagnostics, Electroanalysis.\n\nVolunteer (Lab Tour), Southern California Science Olympiad, 2025.\nJudge, Orange County Science and Engineering Fair (OCSEF), 2025.\nJudge, Summer Undergraduate Research Fellowships (SURF) Perpall Speaking Competition, Caltech, 2024.\nInstructor, Crash Course on Wearable and Ingestible Sensors for DIVE Veteran Students, Caltech, 2024.",
+    "Order": 4
+  },
+  {
+    "Name": "Proposal Writing Experience",
+    "Section": "Proposal Writing",
+    "Content": "Principal Investigator (PI):\n- NUS PYP startup grant (Funded)\n- ICMB NIH T32 Training Grant proposal (Funded) - T32EB023858\n- Merkin Institute for Translational Research Spark Grant proposal\n\nGrant Writing Assistance:\n- NIH NIDCD Research Project Grant (R01) proposal (Funded) - R01DC021461\n- Office of Naval Research (ONR) proposal (Funded) - N00014-21-1-2483",
+    "Order": 5
+  },
+  {
+    "Name": "Patents",
+    "Section": "Patents",
+    "Content": "\"Systems and Methods for Powering Autonomous Sweat Sensor,\" W. Gao, J. Min, 2023, US Patent Application No. 18/077,846.\n\n\"Wearable Autonomous Biomimetic Sweat Sensor for Precision Nutrition,\" W. Gao, M. Wang, Y. Yang, J. Min, 2022, US Patent Application No. 17/824,798.",
+    "Order": 6
+  }
+]

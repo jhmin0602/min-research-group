@@ -224,17 +224,77 @@ def sync_education():
     return items
 
 
+def parse_body(body_text):
+    """Parse the Body field into structured subtopics.
+
+    Format in Notion:
+        First paragraph(s) = description (already in Description field)
+        media: ... = media highlights line
+        ### Title
+        image: filename.png
+        caption: ... (Journal Name Year, Vol, Pages)
+        link: URL
+    """
+    if not body_text:
+        return {"media_highlights": "", "subtopics": []}
+
+    lines = body_text.split("\n")
+    media_highlights = ""
+    subtopics = []
+    current = None
+
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith("media:"):
+            media_highlights = stripped[len("media:"):].strip()
+        elif stripped.startswith("### "):
+            if current:
+                subtopics.append(current)
+            current = {"title": stripped[4:].strip(), "image": "", "caption": "", "link": ""}
+        elif stripped.startswith("image:") and current:
+            current["image"] = stripped[len("image:"):].strip()
+        elif stripped.startswith("caption:") and current:
+            current["caption"] = stripped[len("caption:"):].strip()
+        elif stripped.startswith("link:") and current:
+            current["link"] = stripped[len("link:"):].strip()
+
+    if current:
+        subtopics.append(current)
+
+    return {"media_highlights": media_highlights, "subtopics": subtopics}
+
+
 def sync_projects():
     """Sync research projects database."""
     pages = query_all(DB_IDS["projects"])
     items = []
     for page in pages:
         props = page["properties"]
+        body_text = get_text(props.get("Body"))
+        parsed = parse_body(body_text)
+
+        # Extract the intro paragraph from Body (everything before media: or ### )
+        intro = ""
+        if body_text:
+            intro_lines = []
+            for line in body_text.split("\n"):
+                stripped = line.strip()
+                if stripped.startswith("media:") or stripped.startswith("### "):
+                    break
+                if stripped:
+                    intro_lines.append(stripped)
+            intro = " ".join(intro_lines)
+
         items.append({
             "Project": get_text(props.get("Project")),
             "Description": get_text(props.get("Description")),
             "Category": get_select(props.get("Category")),
             "Order": get_number(props.get("Order")),
+            "Slug": get_text(props.get("Slug")),
+            "Hero_Image": get_text(props.get("Hero_Image")),
+            "Full_Description": intro,
+            "Media_Highlights": parsed["media_highlights"],
+            "Subtopics": parsed["subtopics"],
         })
     items.sort(key=lambda x: x.get("Order") or 0)
     return items

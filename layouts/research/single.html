@@ -1,0 +1,39 @@
+{{ define "main" }}
+{{ $slug := .Params.slug }}
+{{ $project := false }}
+{{ range .Site.Data.projects }}
+  {{ if eq .Slug $slug }}
+    {{ $project = . }}
+  {{ end }}
+{{ end }}
+
+{{ with $project }}
+<section class="research-subpage-header">
+  <div class="container">
+    <a href="{{ "research/" | relURL }}" class="back-link">← Back to Research</a>
+    <h1>{{ .Order }}. {{ .Project }}</h1>
+    <p class="lead">{{ .Full_Description }}</p>
+  </div>
+</section>
+
+<section class="section research-subpage">
+  <div class="container">
+    {{ with .Media_Highlights }}
+    <p class="media-highlights">{{ . }}</p>
+    {{ end }}
+
+    {{ range .Subtopics }}
+    <div class="subtopic">
+      <h3>{{ .title }}</h3>
+      <div class="subtopic-figure">
+        <img src="{{ (printf "images/research/%s" .image) | relURL }}" alt="{{ .title }}" loading="lazy">
+        <p class="subtopic-caption">
+          {{ if .link }}<a href="{{ .link }}" target="_blank" rel="noopener">{{ .caption }}</a>{{ else }}{{ .caption }}{{ end }}
+        </p>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+{{ end }}

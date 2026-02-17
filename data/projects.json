@@ -3,18 +3,78 @@
     "Project": "Wearable Sensors",
     "Description": "Developing novel wearable biosensors and platforms for real-time detection of biomarkers in sweat, enabling personalized healthcare monitoring",
     "Category": "Wearable Sensors",
-    "Order": 1
+    "Order": 1,
+    "Slug": "wearable-sensors",
+    "Hero_Image": "/images/research/wearable_sensors.jpg",
+    "Full_Description": "We focus on the development of cutting-edge wearable sweat sensors for personalized healthcare. By combining novel biosensors with wearable electronic systems, we aim to revolutionize healthcare monitoring. These integrated systems have the capability to continuously and multimodally detect a wide range of biomarkers in sweat, providing real-time insights into an individual's health status. This technology holds great potential for early disease detection, performance optimization, and overall well-being. Through our research, we strive to advance the field of personalized healthcare and empower individuals to take control of their health.",
+    "Media_Highlights": "These works have been highlighted in Science Daily, Xinhua, Caltech News, Science Translational Medicine, Physics World, American Cancer Society etc.",
+    "Subtopics": [
+      {
+        "title": "I. Laser-engraved graphene (LEG) sensors for sensitive detection of uric acid and tyrosine",
+        "image": "fig_leg_sensors.png",
+        "caption": "Laser-enabled flexible lab-on-the-skin for non-invasive metabolic and nutritional management (Nature Biotechnology 2020, 38, 217-224)",
+        "link": "https://www.nature.com/articles/s41587-019-0321-x"
+      },
+      {
+        "title": "II. MIP sensors for universal detection of a wide array of amino acids and vitamins",
+        "image": "fig_mip_sensors.png",
+        "caption": "A wearable autonomous MIP biosensor for the monitoring of metabolites and nutrients (Nature Biomedical Engineering 2022, 6, 1225-1235)",
+        "link": "https://www.nature.com/articles/s41551-022-00916-z"
+      },
+      {
+        "title": "III. LEG-based immunosensors for sensitive detection of c-reactive protein",
+        "image": "fig_leg_immunosensors.png",
+        "caption": "Wearable biosensor for wireless monitoring of systemic inflammation (Nature Biomedical Engineering 2023, 10.1038/s41551-023-01059-5)",
+        "link": "https://www.nature.com/articles/s41551-023-01059-5"
+      }
+    ]
   },
   {
     "Project": "Battery-free Bioelectronics",
     "Description": "Developing sustainable power systems that harvest energy from our body and the environment to power bioelectronic devices, reducing reliance on lithium batteries",
     "Category": "Battery-free Bioelectronics",
-    "Order": 2
+    "Order": 2,
+    "Slug": "battery-free",
+    "Hero_Image": "/images/research/battery_free.jpg",
+    "Full_Description": "We are dedicated to finding sustainable alternatives to power bioelectronic devices. Our multidisciplinary approach involves the integration of diverse energy harvesting technologies, including solar cells, biofuel cells, and triboelectric nanogenerators. By harnessing the power of renewable energy sources, we aim to overcome the limitations of traditional lithium batteries and enable self-powered wearable devices. Through our work, we seek to create a greener and more efficient future for bioelectronic devices, reducing environmental impact and enhancing user convenience.",
+    "Media_Highlights": "These works have been highlighted in Nature Electronics, Caltech News, The Conservation, Yahoo News, The Engineer, CNET, Inside Science, SF Gate, etc.",
+    "Subtopics": [
+      {
+        "title": "I. Harvesting energy from human motion",
+        "image": "fig_motion_energy.png",
+        "caption": "Wireless battery-free wearable sweat sensor powered by human motion (Science Advances 2020, 6, eaay9842)",
+        "link": "https://www.science.org/doi/full/10.1126/sciadv.aay9842"
+      },
+      {
+        "title": "II. Harvesting energy from human sweat",
+        "image": "fig_sweat_energy.png",
+        "caption": "Wireless battery-free e-skin powered by human sweat (Science Robotics 2020, 5, eaaz7946)",
+        "link": "https://www.science.org/doi/full/10.1126/scirobotics.aaz7946"
+      },
+      {
+        "title": "III. Harvesting energy from ambient light",
+        "image": "fig_light_energy.png",
+        "caption": "Wireless battery-free wearable device powered by ambient light (Nature Electronics 2023, 6, 630-641)",
+        "link": "https://www.nature.com/articles/s41928-023-00996-y"
+      }
+    ]
   },
   {
     "Project": "Ingestible Electronics",
     "Description": "Advanced sensors and platforms for tracking biomarkers in the GI tract, enhancing understanding of gastrointestinal physiologies and the gut-brain axis",
     "Category": "Ingestible Electronics",
-    "Order": 3
+    "Order": 3,
+    "Slug": "ingestible",
+    "Hero_Image": "/images/research/ingestible.jpg",
+    "Full_Description": "We delve into the realm of ingestible capsule devices designed for biomarker tracking within the gastrointestinal (GI) tract. Leveraging breakthrough sensors and platforms, our goal is to unlock a deeper understanding of the gut microbiome and detect essential biomarkers in this complex environment. These ingestible capsules offer a non-invasive and patient-friendly solution for continuous monitoring, providing valuable insights into digestive health and disease management. By pushing the boundaries of GI tract sensing, we aspire to pave the way for novel diagnostic tools and personalized interventions in the field of gastroenterology.",
+    "Media_Highlights": "",
+    "Subtopics": [
+      {
+        "title": "I. Continuous noninvasive biochemical profiling of the gastrointestinal tract",
+        "image": "fig_gi_tract.png",
+        "caption": "Continuous biochemical profiling of the gastrointestinal tract using an integrated smart capsule (Nature Electronics 2025, 10.1038/s41928-025-01407-0)",
+        "link": "https://www.nature.com/articles/s41928-025-01407-0"
+      }
+    ]
   }
 ]

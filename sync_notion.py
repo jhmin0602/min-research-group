@@ -379,7 +379,12 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
     Section order matches the original Word CV:
     Education → Research Experience → Honors → Teaching → Conferences →
     Academic Service → Proposal Writing → Patents → Selected Pubs → Other Pubs
+
+    Uses table-based layout for Education (matching the original Word CV)
+    and tight spacing between role headers and bullet items.
     """
+    import re
+
     cv_dir = os.path.join(os.path.dirname(__file__), "cv")
     os.makedirs(cv_dir, exist_ok=True)
 
@@ -435,6 +440,18 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
                 return item
         return None
 
+    def render_line_with_bold(stripped):
+        """Convert a line with **bold** markdown to LaTeX, escaping non-bold parts."""
+        parts = re.split(r'(\*\*.+?\*\*)', stripped)
+        latex_line = ""
+        for part in parts:
+            bold_match = re.match(r'\*\*(.+?)\*\*', part)
+            if bold_match:
+                latex_line += r"\textbf{" + escape_latex(bold_match.group(1)) + "}"
+            else:
+                latex_line += escape_latex(part)
+        return latex_line
+
     def render_cv_section_body(content):
         """Render a CV-only section body into LaTeX lines.
 
@@ -442,45 +459,59 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
         - **bold text** for sub-headings (years, roles)
         - Lines starting with '- ' for bullet items
         - Plain text for regular paragraphs
+
+        Key improvements over previous version:
+        - No trailing \\\\ after role header lines that precede bullets
+        - Proper \\vspace between research experience entries
+        - Tight spacing between header and its bullet list
         """
+        raw_lines = content.split("\n")
         result = []
         in_list = False
-        for line in content.split("\n"):
-            stripped = line.strip()
+        i = 0
+        while i < len(raw_lines):
+            stripped = raw_lines[i].strip()
+
             if not stripped:
                 if in_list:
                     result.append(r"\end{itemize}")
                     in_list = False
-                result.append("")
+                i += 1
                 continue
 
             if stripped.startswith("- "):
                 if not in_list:
-                    result.append(r"\begin{itemize}[leftmargin=*, nosep]")
+                    result.append(r"\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]")
                     in_list = True
                 item_text = stripped[2:]
                 result.append(f"  \\item {escape_latex(item_text)}")
+                i += 1
             else:
                 if in_list:
                     result.append(r"\end{itemize}")
+                    result.append(r"\vspace{6pt}")
                     in_list = False
-                # Handle **bold** markdown
-                import re
-                def bold_replace(m):
-                    return r"\textbf{" + escape_latex(m.group(1)) + "}"
-                latex_line = re.sub(r'\*\*(.+?)\*\*', bold_replace, stripped)
-                # Escape remaining text (parts not already processed)
-                # Since bold_replace already escaped inside bold, we need to handle
-                # the non-bold parts carefully
-                parts = re.split(r'(\*\*.+?\*\*)', stripped)
-                latex_line = ""
-                for part in parts:
-                    bold_match = re.match(r'\*\*(.+?)\*\*', part)
-                    if bold_match:
-                        latex_line += r"\textbf{" + escape_latex(bold_match.group(1)) + "}"
-                    else:
-                        latex_line += escape_latex(part)
-                result.append(latex_line + " \\\\")
+
+                latex_line = render_line_with_bold(stripped)
+
+                # Check if the next non-empty line is a bullet item
+                next_is_bullet = False
+                j = i + 1
+                while j < len(raw_lines):
+                    ns = raw_lines[j].strip()
+                    if ns:
+                        next_is_bullet = ns.startswith("- ")
+                        break
+                    j += 1
+
+                if next_is_bullet:
+                    # This is a role header line — don't add \\, let bullets follow tight
+                    result.append(latex_line)
+                else:
+                    # Regular text line — add line break
+                    result.append(latex_line + r" \\")
+                i += 1
+
         if in_list:
             result.append(r"\end{itemize}")
         return result
@@ -498,34 +529,47 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
     lines = []
     # Preamble
     lines.append(r"\documentclass[11pt,a4paper]{article}")
-    lines.append(r"\usepackage[margin=1in]{geometry}")
+    lines.append(r"\usepackage[margin=0.75in]{geometry}")
     lines.append(r"\usepackage{enumitem}")
     lines.append(r"\usepackage{hyperref}")
     lines.append(r"\usepackage[T1]{fontenc}")
     lines.append(r"\usepackage{charter}")
     lines.append(r"\usepackage{titlesec}")
+    lines.append(r"\usepackage{array}")
     lines.append(r"\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]")
-    lines.append(r"\titlespacing{\section}{0pt}{12pt}{6pt}")
+    lines.append(r"\titlespacing{\section}{0pt}{10pt}{4pt}")
     lines.append(r"\setlength{\parindent}{0pt}")
+    lines.append(r"\setlength{\parskip}{0pt}")
     lines.append(r"\begin{document}")
     lines.append("")
 
     # Header
-    lines.append(r"{\LARGE \textbf{Jihong Min}} \\[6pt]")
+    lines.append(r"{\LARGE \textbf{Jihong Min}} \\[4pt]")
     lines.append(r"Presidential Young Professor, Department of Biomedical Engineering \\")
     lines.append(r"National University of Singapore \\")
     lines.append(r"Email: jihong.min@nus.edu.sg \\")
     lines.append(r"\href{https://scholar.google.com/citations?user=T4pVa1UAAAAJ}{Google Scholar}")
     lines.append("")
 
-    # === 1. Education ===
+    # === 1. Education (table-based layout matching original Word CV) ===
     lines.append(r"\section{Education}")
-    for edu in education:
-        lines.append(f"\\textbf{{{escape_latex(edu['Years'])}}} \\hfill {escape_latex(edu['Degree'])} \\\\")
-        lines.append(f"{escape_latex(edu['Institution'])}")
-        if edu.get("Advisor"):
-            lines.append(f" \\\\ \\textit{{{escape_latex(edu['Advisor'])}}}")
-        lines.append("\\\\[6pt]")
+    lines.append(r"\begin{tabular}{@{} >{\bfseries}p{2.2cm} p{\dimexpr\textwidth-2.5cm\relax} @{}}")
+    for idx, edu in enumerate(education):
+        years = escape_latex(edu['Years'])
+        degree = escape_latex(edu['Degree'])
+        institution = escape_latex(edu['Institution'])
+        advisor = escape_latex(edu.get('Advisor', ''))
+        # First line: years | degree
+        lines.append(f"{years} & {degree} \\\\")
+        # Second line: empty | institution
+        lines.append(f" & {institution} \\\\")
+        # Third line: empty | advisor (italic)
+        if advisor:
+            lines.append(f" & \\textit{{{advisor}}} \\\\")
+        # Add spacing between education entries (but not after last)
+        if idx < len(education) - 1:
+            lines.append(r" & \\[4pt]")
+    lines.append(r"\end{tabular}")
     lines.append("")
 
     # === 2. Research & Work Experience ===
@@ -537,7 +581,7 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
 
     # === 3. Honors & Awards ===
     lines.append(r"\section{Honors \& Awards}")
-    lines.append(r"\begin{itemize}[leftmargin=*, nosep]")
+    lines.append(r"\begin{itemize}[leftmargin=*, itemsep=1pt, parsep=0pt, topsep=2pt]")
     for honor in honors:
         lines.append(f"  \\item {escape_latex(honor['Date'])}. {escape_latex(honor['Award'])}")
     lines.append(r"\end{itemize}")
@@ -586,7 +630,7 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
                  f"$>$7000 citations, h-index 23, updated {datetime.now().strftime('%m/%Y')})")
     lines.append(r"$\dagger$ indicates equal contributions")
     lines.append("")
-    lines.append(r"\begin{enumerate}[leftmargin=*, nosep]")
+    lines.append(r"\begin{enumerate}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]")
     for pub in selected:
         lines.append(f"  \\item {format_pub_latex(pub)}")
     lines.append(r"\end{enumerate}")
@@ -594,7 +638,7 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
 
     # === 10. Other Publications ===
     lines.append(r"\section{Other Publications}")
-    lines.append(r"\begin{enumerate}[leftmargin=*, nosep]")
+    lines.append(r"\begin{enumerate}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]")
     for pub in other:
         lines.append(f"  \\item {format_pub_latex(pub)}")
     lines.append(r"\end{enumerate}")

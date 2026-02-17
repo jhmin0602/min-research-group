@@ -1,59 +1,65 @@
 \documentclass[11pt,a4paper]{article}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.75in]{geometry}
 \usepackage{enumitem}
 \usepackage{hyperref}
 \usepackage[T1]{fontenc}
 \usepackage{charter}
 \usepackage{titlesec}
+\usepackage{array}
 \titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
-\titlespacing{\section}{0pt}{12pt}{6pt}
+\titlespacing{\section}{0pt}{10pt}{4pt}
 \setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
 \begin{document}
 
-{\LARGE \textbf{Jihong Min}} \\[6pt]
+{\LARGE \textbf{Jihong Min}} \\[4pt]
 Presidential Young Professor, Department of Biomedical Engineering \\
 National University of Singapore \\
 Email: jihong.min@nus.edu.sg \\
 \href{https://scholar.google.com/citations?user=T4pVa1UAAAAJ}{Google Scholar}
 
 \section{Education}
-\textbf{2024 - 2026} \hfill iCMB NIH T32 Postdoctoral Research Fellow in Medical and Electrical Engineering \\
-California Institute of Technology \& UCLA
- \\ \textit{Prof. Azita Emami, Prof. Wei Gao, Prof. Tzung Hsiai}
-\\[6pt]
-\textbf{2018 - 2023} \hfill Ph.D. in Medical Engineering \\
-California Institute of Technology
- \\ \textit{Prof. Wei Gao}
-\\[6pt]
-\textbf{2014 - 2017} \hfill B.S. in Electrical Engineering \\
-University of Illinois at Urbana-Champaign
- \\ \textit{Prof. Joseph Lyding}
-\\[6pt]
+\begin{tabular}{@{} >{\bfseries}p{2.2cm} p{\dimexpr\textwidth-2.5cm\relax} @{}}
+2024 - 2026 & iCMB NIH T32 Postdoctoral Research Fellow in Medical and Electrical Engineering \\
+ & California Institute of Technology \& UCLA \\
+ & \textit{Prof. Azita Emami, Prof. Wei Gao, Prof. Tzung Hsiai} \\
+ & \\[4pt]
+2018 - 2023 & Ph.D. in Medical Engineering \\
+ & California Institute of Technology \\
+ & \textit{Prof. Wei Gao} \\
+ & \\[4pt]
+2014 - 2017 & B.S. in Electrical Engineering \\
+ & University of Illinois at Urbana-Champaign \\
+ & \textit{Prof. Joseph Lyding} \\
+\end{tabular}
 
 \section{Research \& Work Experience}
-\textbf{2024-2026} — iCMB NIH T32 Postdoctoral Research Fellow, Caltech and UCLA Medicine, USA (Advisors: Prof. Azita Emami, Prof. Wei Gao, Prof. Tzung Hsiai) \\
-\begin{itemize}[leftmargin=*, nosep]
+\textbf{2024-2026} — iCMB NIH T32 Postdoctoral Research Fellow, Caltech and UCLA Medicine, USA (Advisors: Prof. Azita Emami, Prof. Wei Gao, Prof. Tzung Hsiai)
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item Development of ingestible electronic systems with electrochemical sensors based on aptamers and enzymes for real time monitoring of metabolites and neurotransmitters in the gastrointestinal tract.
   \item Development of a wearable Electrical Impedance Tomography (EIT) belt for accessible liver screening, targeting early detection of non-alcoholic fatty liver disease (NAFLD) with a flexible and fully autonomous system incorporating a conductive polymer hydrogel and a micro-electrode array.
 \end{itemize}
-\textbf{2018-2023} — Graduate Researcher, Caltech, USA (Advisor: Prof. Wei Gao) \\
-\begin{itemize}[leftmargin=*, nosep]
+\vspace{6pt}
+\textbf{2018-2023} — Graduate Researcher, Caltech, USA (Advisor: Prof. Wei Gao)
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item Development of robust and cost efficient wearable triboelectric nanogenerator and a flexible solar cell based on a quasi-2D perovskite layer with $\alpha$-methylbenzylamine (MBA) as an additive for efficient and sustainable powering of wearables.
   \item Development of novel electrochemical sensors based on enzymes, ion-selective electrodes, antibodies tagged with gold nanoparticles, and molecularly imprinted polymers on laser printed graphene (LEG) and inkjet printed carbon/gold electrodes for sensitive and selective molecular detection in biofluids.
   \item Design of miniaturized and low-power wearable/ingestible electronic systems and integration of energy harvesting modules and electrochemical sensors for wireless monitoring of physiochemical biomarkers.
 \end{itemize}
-\textbf{2016-2017} — Undergraduate Researcher, UIUC, USA (Advisor: Prof. Joseph Lyding) \\
-\begin{itemize}[leftmargin=*, nosep]
+\vspace{6pt}
+\textbf{2016-2017} — Undergraduate Researcher, UIUC, USA (Advisor: Prof. Joseph Lyding)
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item Self-assembly of centimeter scale polystyrene microsphere monolayers using Langmuir Blodgett transfer.
   \item Fabrication of gold-graphene-gold bowtie structure for exploration of large scale plasmonic field enhancements.
 \end{itemize}
-\textbf{2016-2016} — Summer Undergraduate Researcher, GIST, South Korea (Advisor: Prof. Jae-Hyung Jang) \\
-\begin{itemize}[leftmargin=*, nosep]
+\vspace{6pt}
+\textbf{2016-2016} — Summer Undergraduate Researcher, GIST, South Korea (Advisor: Prof. Jae-Hyung Jang)
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item Fabrication of the Metal-Insulator-Metal structure ReRAM devices.
 \end{itemize}
 
 \section{Honors \& Awards}
-\begin{itemize}[leftmargin=*, nosep]
+\begin{itemize}[leftmargin=*, itemsep=1pt, parsep=0pt, topsep=2pt]
   \item 02/2026. NUS Presidential Young Professorship
   \item 09/2024. Nature and Health Conference Best Poster Award
   \item 08/2024. NextProf Nexus Fellow
@@ -66,19 +72,21 @@ University of Illinois at Urbana-Champaign
 \end{itemize}
 
 \section{Teaching and Mentoring}
-\textbf{Teaching Assistant:} \\
-\begin{itemize}[leftmargin=*, nosep]
+\textbf{Teaching Assistant:}
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item Spring 2018. Theory and Fabrication of Integrated Circuits. ECE 444, UIUC
 \end{itemize}
-\textbf{Guest Lecturer:} \\
-\begin{itemize}[leftmargin=*, nosep]
+\vspace{6pt}
+\textbf{Guest Lecturer:}
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item Spring 2020. New Frontiers in Medical Technologies. MedE 205, Caltech
   \item Winter 2021. Sensors in Medicine. MedE 202, Caltech
   \item Winters 2023, 2024. Sensors in Medicine. MedE 202, Caltech
   \item Summer 2024. Crash Course on Wearables for DIVE Veteran Students, Caltech
 \end{itemize}
-\textbf{Research Mentor at Caltech (7 female students):} \\
-\begin{itemize}[leftmargin=*, nosep]
+\vspace{6pt}
+\textbf{Research Mentor at Caltech (7 female students):}
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item Ahyeon Cho (ChemE), Visiting Graduate Student
   \item Yonglin Chen (MedE), Graduate Student
   \item Hyehyun Kim (MSE), Visiting Graduate Student
@@ -91,7 +99,7 @@ University of Illinois at Urbana-Champaign
 \end{itemize}
 
 \section{Conference Presentations, Poster Sessions, Invited Talks, and Workshops}
-\begin{itemize}[leftmargin=*, nosep]
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item Oral Presentation: MRS Fall Meeting \& Exhibit, Boston, MA, Nov 2025.
   \item (Invited) Oral \& Poster Presentation: Nature and Health Conference, Brown University, Providence, RI, September 2024 (Best Poster Award).
   \item Workshop: NextProf Nexus, University of Michigan, Ann Arbor, MI, August 2024.
@@ -106,8 +114,8 @@ University of Illinois at Urbana-Champaign
 
 \section{Academic Service}
 \textbf{Reviewer for Journals and Conferences:} \\
-Science Robotics, Nature Communications, Nature Sensors, Biosensors and Bioelectronics, ACS Photonics, ACS Applied Nano Materials, npj Flexible Electronics, npj Flexible Materials, npj Biomedical Innovations, Electroanalysis, Scientific Reports, Analytical Chemistry, Talanta, IEEE Consumer Electronics Magazine, Electrochemistry Communications, ACS Applied Materials \& Interfaces, IEEE Open Journal of Engineering in Medicine and Biology, Sensors \& Diagnostics, Electroanalysis. \\
-\begin{itemize}[leftmargin=*, nosep]
+Science Robotics, Nature Communications, Nature Sensors, Biosensors and Bioelectronics, ACS Photonics, ACS Applied Nano Materials, npj Flexible Electronics, npj Flexible Materials, npj Biomedical Innovations, Electroanalysis, Scientific Reports, Analytical Chemistry, Talanta, IEEE Consumer Electronics Magazine, Electrochemistry Communications, ACS Applied Materials \& Interfaces, IEEE Open Journal of Engineering in Medicine and Biology, Sensors \& Diagnostics, Electroanalysis.
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item Volunteer (Lab Tour), Southern California Science Olympiad, 2025.
   \item Judge, Orange County Science and Engineering Fair (OCSEF), 2025.
   \item Judge, Summer Undergraduate Research Fellowships (SURF) Perpall Speaking Competition, Caltech, 2024.
@@ -115,20 +123,21 @@ Science Robotics, Nature Communications, Nature Sensors, Biosensors and Bioelect
 \end{itemize}
 
 \section{Proposal Writing Experience}
-\textbf{Principal Investigator (PI):} \\
-\begin{itemize}[leftmargin=*, nosep]
+\textbf{Principal Investigator (PI):}
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item NUS PYP startup grant (Funded)
   \item ICMB NIH T32 Training Grant proposal (Funded) - T32EB023858
   \item Merkin Institute for Translational Research Spark Grant proposal
 \end{itemize}
-\textbf{Grant Writing Assistance:} \\
-\begin{itemize}[leftmargin=*, nosep]
+\vspace{6pt}
+\textbf{Grant Writing Assistance:}
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item NIH NIDCD Research Project Grant (R01) proposal (Funded) - R01DC021461
   \item Office of Naval Research (ONR) proposal (Funded) - N00014-21-1-2483
 \end{itemize}
 
 \section{Patents}
-\begin{itemize}[leftmargin=*, nosep]
+\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item "Systems and Methods for Powering Autonomous Sweat Sensor," W. Gao, J. Min, 2023, US Patent Application No. 18/077,846.
   \item "Wearable Autonomous Biomimetic Sweat Sensor for Precision Nutrition," W. Gao, M. Wang, Y. Yang, J. Min, 2022, US Patent Application No. 17/824,798.
 \end{itemize}
@@ -137,7 +146,7 @@ Science Robotics, Nature Communications, Nature Sensors, Biosensors and Bioelect
 (27 papers with 9 as first/co-first author, $>$7000 citations, h-index 23, updated 02/2026)
 $\dagger$ indicates equal contributions
 
-\begin{enumerate}[leftmargin=*, nosep]
+\begin{enumerate}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item \textbf{Min, J.}$\dagger$, Ahn, H.$\dagger$, Lukas, H., Ma, X., Bhansali, R., Sunwoo, S.-H., Wang, C., Xu, Y., Yao, R., Kim, G., Li, Z., Hsiai, T. K., Emami, A., Jung, H.-T., \& Gao, W. (2025). Continuous biochemical profiling of the gastrointestinal tract using a multiparametric ingestible capsule. \textit{Nature Electronics}, 8, 844-855. Featured on Journal Cover
   \item Heng, W., Yin, S., \textbf{Min, J.}, Wang, C., Han, H., Shirzaei Sani, E., Li, J., Song, Y., Rossiter, H. B., \& Gao, W. (2024). A smart mask for exhaled breath condensate harvesting and analysis. \textit{Science}, 385, 954-961.
   \item \textbf{Min, J.}$\dagger$, Demchyshyn, S.$\dagger$, Sempionatto, J. R., Song, Y., Hailegnaw, B., Xu, C., Yang, Y., Solomon, S., Putz, C., Lehner, L., Schwarz, J. F., Schwarzinger, C., Scharber, M., Shirzaei Sani, E., Kaltenbrunner, M., \& Gao, W. (2023). An autonomous wearable biosensor powered by a perovskite solar cell. \textit{Nature Electronics}, 6, 630-641. Featured on Journal Cover
@@ -151,7 +160,7 @@ $\dagger$ indicates equal contributions
 \end{enumerate}
 
 \section{Other Publications}
-\begin{enumerate}[leftmargin=*, nosep]
+\begin{enumerate}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]
   \item Shin, S., Liu, R., Yang, Y., Lasalde-Ramírez, J. A., Kim, G., Won, C., \textbf{Min, J.}, Wang, C., Fan, K., Han, H., Uwakwe, C., Heng, W., Hsiai, T. K., Li, Z., FitzGerald, J. D., \& Gao, W. (2025). A bioinspired microfluidic wearable sensor for multiday sweat sampling, transport, and metabolic analysis. \textit{Science Advances}, 11(33), eadw9024.
   \item Wang, C., Fan, K., Shirzaei Sani, E., Lasalde-Ramírez, J. A., Heng, W., \textbf{Min, J.}, Solomon, S. A., Wang, M., Li, J., Han, H., Kim, G., Shin, S., Seder, A., Shih, C.-D., Armstrong, D. G., \& Gao, W. (2025). A microfluidic wearable device for wound exudate management and continuous in situ analysis of wound biomarkers. \textit{Science Translational Medicine}, 17(795), eadt0882.
   \item Tu, J., Yeom, J., Chaj Ulloa, J., Solomon, S. A., \textbf{Min, J.}, Heng, W., Kim, G., Dao, J., Vemu, R., Pang, M., Wang, C., Kim, D.-H., \& Gao, W. (2025). Stressomic: A wearable microfluidic biosensor for dynamic profiling of multiple stress hormones in sweat. \textit{Science Advances}, 11(32), eadx6491.

@@ -1,0 +1,44 @@
+baseURL = "https://www.jihong-min.com/"
+languageCode = "en-us"
+title = "Min Research Group @NUS"
+
+[params]
+  description = "We are developing the next generation of wearable, ingestible, and implantable platforms that enable continuous biochemical monitoring and responsive therapy."
+  pi_name = "Jihong Min"
+  pi_title = "Presidential Young Professor"
+  department = "Department of Biomedical Engineering"
+  university = "National University of Singapore"
+  email = "jihong.min@nus.edu.sg"
+  google_scholar = "https://scholar.google.com/citations?user=T4pVa1UAAAAJ&hl=en"
+  linkedin = "https://www.linkedin.com/in/jihong-min/"
+
+[menu]
+  [[menu.main]]
+    name = "Research"
+    url = "/research/"
+    weight = 1
+  [[menu.main]]
+    name = "Publications"
+    url = "/publications/"
+    weight = 2
+  [[menu.main]]
+    name = "News"
+    url = "/news/"
+    weight = 3
+  [[menu.main]]
+    name = "PI"
+    url = "/pi/"
+    weight = 4
+  [[menu.main]]
+    name = "Team"
+    url = "/team/"
+    weight = 5
+  [[menu.main]]
+    name = "Join"
+    url = "/join/"
+    weight = 6
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

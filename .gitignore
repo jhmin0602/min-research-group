@@ -1,0 +1,22 @@
+# Hugo build output
+public/
+resources/
+.hugo_build.lock
+
+# Environment variables (contains API keys)
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+
+# CV build artifacts
+cv/*.aux
+cv/*.log
+cv/*.out
+cv/*.synctex.gz

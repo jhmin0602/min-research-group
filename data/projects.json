@@ -1,0 +1,20 @@
+[
+  {
+    "Project": "Wearable Sensors",
+    "Description": "Developing novel wearable biosensors and platforms for real-time detection of biomarkers in sweat, enabling personalized healthcare monitoring",
+    "Category": "Wearable Sensors",
+    "Order": 1
+  },
+  {
+    "Project": "Battery-free Bioelectronics",
+    "Description": "Developing sustainable power systems that harvest energy from our body and the environment to power bioelectronic devices, reducing reliance on lithium batteries",
+    "Category": "Battery-free Bioelectronics",
+    "Order": 2
+  },
+  {
+    "Project": "Ingestible Electronics",
+    "Description": "Advanced sensors and platforms for tracking biomarkers in the GI tract, enhancing understanding of gastrointestinal physiologies and the gut-brain axis",
+    "Category": "Ingestible Electronics",
+    "Order": 3
+  }
+]

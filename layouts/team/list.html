@@ -1,0 +1,63 @@
+{{ define "main" }}
+<section class="page-header team-header">
+  <div class="container pi-grid">
+    <div class="pi-photo">
+      <img src="/images/team/jihong_min.jpg" alt="Jihong Min">
+    </div>
+    <div class="pi-intro">
+      <h1>PI: Jihong Min</h1>
+      <p class="pi-title text-gold">{{ .Site.Params.pi_title }}, {{ .Site.Params.university }}</p>
+      <div class="pi-links">
+        <a href="/pi/" class="btn btn-outline">About Me</a>
+        <a href="/files/jihong_min_cv.pdf" class="btn btn-outline" target="_blank">CV</a>
+        <a href="{{ .Site.Params.google_scholar }}" class="btn btn-outline" target="_blank" rel="noopener">Google Scholar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container center-text">
+    <h2 class="section-title text-navy">Get to Know Us</h2>
+    <p class="team-description">We are an interdisciplinary team passionate about shaping the future of personalized healthcare. Our research integrates various fields of science and engineering to design next-generation wearable, ingestible, and implantable platforms.</p>
+    <a href="/join/" class="btn btn-primary">Opportunities</a>
+  </div>
+</section>
+
+{{ $members := where .Site.Data.team "Status" "Current" }}
+{{ $members = where $members "Role" "!=" "PI" }}
+{{ if $members }}
+<section class="section">
+  <div class="container">
+    <h2 class="section-title text-gold">Current Members</h2>
+    <div class="team-grid">
+      {{ range $members }}
+      <div class="team-card">
+        {{ with .Photo }}<img src="{{ . }}" alt="{{ $.Name }}" loading="lazy">{{ end }}
+        <h3>{{ .Name }}</h3>
+        <p class="team-role">{{ .Role }}</p>
+        {{ with .Bio }}<p class="team-bio">{{ . }}</p>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{ $alumni := where .Site.Data.team "Status" "Alumni" }}
+{{ if $alumni }}
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="section-title text-navy">Alumni</h2>
+    <div class="team-grid">
+      {{ range $alumni }}
+      <div class="team-card">
+        <h3>{{ .Name }}</h3>
+        <p class="team-role">{{ .Role }}</p>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
+{{ end }}

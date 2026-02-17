@@ -1,0 +1,38 @@
+{{ define "main" }}
+<section class="page-header">
+  <div class="container">
+    <h1>Publications</h1>
+    <p class="subtitle"><a href="{{ .Site.Params.google_scholar }}" target="_blank" rel="noopener" class="btn btn-secondary">Full List on Google Scholar</a></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="pub-stats text-gold">{{ len .Site.Data.publications }} papers with {{ len (where .Site.Data.publications "Is_First_Author" true) }} as first/co-first author, >7000 citations, h-index 23, updated 02/2026</p>
+    <p class="pub-note-inline">&dagger; indicates equal contributions</p>
+
+    {{ $pubs := sort .Site.Data.publications "Paper_Number" "desc" }}
+    {{ $years := slice }}
+    {{ range $pubs }}
+      {{ $years = $years | append .Year }}
+    {{ end }}
+    {{ $years = $years | uniq }}
+
+    {{ range $year := $years }}
+    <h2 class="year-heading">{{ $year }}</h2>
+    {{ range where $pubs "Year" $year }}
+    <div class="publication-entry">
+      <span class="pub-number">{{ .Paper_Number }}.</span>
+      <p>
+        <span class="pub-authors">{{ .Authors }}</span>
+        ({{ .Year }}). {{ .Title }}.
+        <em class="pub-journal">{{ .Journal }}</em>{{ with .Volume_Pages }}, {{ . }}{{ end }}.
+        {{ with .PDF_Link }}<a href="{{ . }}" class="pub-pdf" target="_blank" rel="noopener">Download PDF</a>{{ end }}
+        {{ with .Notes }}<br><span class="pub-note">{{ . }}</span>{{ end }}
+      </p>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}

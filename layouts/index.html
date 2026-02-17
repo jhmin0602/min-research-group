@@ -1,0 +1,86 @@
+{{ define "main" }}
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-text">
+      <h1>Welcome to<br><span class="text-navy">Min Research Group</span></h1>
+      <p class="hero-description">We are developing the next generation of wearable, ingestible, and implantable platforms that enable continuous biochemical monitoring and responsive therapy.</p>
+      <div class="hero-actions">
+        <a href="/research/" class="btn btn-primary">Our Research</a>
+        <div class="social-icons">
+          {{ with .Site.Params.google_scholar }}<a href="{{ . }}" target="_blank" rel="noopener" title="Google Scholar">GS</a>{{ end }}
+          {{ with .Site.Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener" title="LinkedIn">in</a>{{ end }}
+        </div>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="/images/hero/hero1.jpg" alt="Research device" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container">
+    <div class="two-col">
+      <div>
+        <h2 class="section-title text-gold">Our Research Focus</h2>
+        <div class="focus-grid">
+          <div class="focus-item">
+            <h3>Continuous biochemical sensing</h3>
+            <p>Systems capable of detecting key biomarkers naturally found in bodily fluids</p>
+          </div>
+          <div class="focus-item">
+            <h3>Antifouling strategies</h3>
+            <p>Microfluidic architectures to maintain long-term biocompatibility and performance</p>
+          </div>
+          <div class="focus-item">
+            <h3>Energy-autonomous bioelectronics</h3>
+            <p>Bioelectronic implants and ingestibles that harvest energy from the body or environment</p>
+          </div>
+          <div class="focus-item">
+            <h3>Closed-loop therapeutic integration</h3>
+            <p>Where sensing triggers automated actuation such as precise drug release or electrical stimulation</p>
+          </div>
+        </div>
+      </div>
+      <div class="opportunities-box">
+        <h2 class="section-title">Opportunities</h2>
+        <p>We welcome <strong>graduate students</strong>, <strong>postdoctoral researchers</strong>, <strong>undergraduate students</strong>, and <strong>visiting affiliates</strong> from BME, ChemE, MatSE, EE, MechE, or related disciplines.</p>
+        <a href="/join/" class="btn btn-primary">Join us!</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title text-gold">Select Publications</h2>
+    {{ $pubs := sort (where .Site.Data.publications "Category" "Selected") "Paper_Number" "desc" }}
+    {{ range first 7 $pubs }}
+    <div class="publication-entry">
+      <p>
+        <span class="pub-authors">{{ .Authors }}</span>
+        ({{ .Year }}). {{ .Title }}.
+        <em class="pub-journal">{{ .Journal }}</em>{{ with .Volume_Pages }}, {{ . }}{{ end }}.
+        {{ with .Notes }}<br><span class="pub-note">{{ . }}</span>{{ end }}
+      </p>
+    </div>
+    {{ end }}
+    <div class="center-action">
+      <a href="/publications/" class="btn btn-secondary">View all publications</a>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="section-title text-navy">Group News</h2>
+    {{ $news := sort .Site.Data.news "Year" "desc" }}
+    {{ range $news }}
+    <div class="news-entry">
+      <span class="news-year">{{ .Year }}</span>
+      <p>{{ .Headline }}</p>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

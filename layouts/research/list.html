@@ -1,0 +1,42 @@
+{{ define "main" }}
+<section class="page-header">
+  <div class="container">
+    <h1>Bioelectronic devices for precision medicine</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="research-pillars">
+      <div class="pillar">
+        <h3 class="text-gold">Biochemical sensing</h3>
+        <img src="/images/research/wearable_sensors.jpg" alt="Biochemical sensing" loading="lazy">
+      </div>
+      <div class="pillar">
+        <h3 class="text-gold">Battery-free wearable platforms</h3>
+        <img src="/images/research/battery_free.jpg" alt="Battery-free wearable platforms" loading="lazy">
+      </div>
+      <div class="pillar">
+        <h3 class="text-gold">Ingestible electronics</h3>
+        <img src="/images/research/ingestible.jpg" alt="Ingestible electronics" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="section-title text-gold">High performance electrochemical sensors for low power and miniaturized biosensing platforms</h2>
+    <div class="project-cards">
+      {{ $projects := sort .Site.Data.projects "Order" "asc" }}
+      {{ range $projects }}
+      <div class="project-card">
+        <h3>{{ .Order }}. {{ .Project }}</h3>
+        <p>{{ .Description }}</p>
+        <span class="project-category">{{ .Category }}</span>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}

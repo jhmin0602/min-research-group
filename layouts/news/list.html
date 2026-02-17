@@ -1,0 +1,46 @@
+{{ define "main" }}
+<section class="page-header">
+  <div class="container">
+    <h1>News & Media</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="two-col-news">
+      <div class="media-reports">
+        <h2>Media Reports</h2>
+        <p class="text-gold media-outlets">Our research has been highlighted in media by Science Daily, Science Translational Medicine, MedGadget, The Engineer, Xinhua, Yahoo News, The Conversation, Inverse, CNET, Inside Science, Nature Electronics, Fast Company, Forbes, MSN, BBC, The Independent, Scientific American, The Guardian, New Scientist, The Daily Beast, Business Insider, Tech Briefs, Physics Today etc.</p>
+
+        {{ $media := where .Site.Data.news "Type" "Media Report" }}
+        {{ $media = sort $media "Year" "desc" }}
+        {{ $years := slice }}
+        {{ range $media }}
+          {{ $years = $years | append .Year }}
+        {{ end }}
+        {{ $years = $years | uniq }}
+
+        {{ range $year := $years }}
+        <h3 class="year-heading">{{ $year }}</h3>
+        {{ range where $media "Year" $year }}
+        <div class="news-item">
+          {{ with .URL }}<a href="{{ . }}" target="_blank" rel="noopener">{{ end }}
+          {{ .Headline }}
+          {{ with .URL }}</a>{{ end }}
+          {{ with .Source }}, <span class="news-source">{{ . }}</span>{{ end }}.
+        </div>
+        {{ end }}
+        {{ end }}
+      </div>
+      <div class="journal-covers">
+        <h2>Journal Covers</h2>
+        <div class="covers-gallery">
+          {{ range (readDir "static/images/covers") }}
+          <img src="/images/covers/{{ .Name }}" alt="Journal cover" loading="lazy" class="cover-img">
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

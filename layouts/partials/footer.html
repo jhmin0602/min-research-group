@@ -1,0 +1,26 @@
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-info">
+        <h3>Contact</h3>
+        <p><strong>{{ .Site.Params.pi_name }}</strong></p>
+        <p>{{ .Site.Params.department }}</p>
+        <p>{{ .Site.Params.university }}</p>
+        <p>Email: <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
+        <div class="social-links">
+          {{ with .Site.Params.google_scholar }}<a href="{{ . }}" target="_blank" rel="noopener">Google Scholar</a>{{ end }}
+          {{ with .Site.Params.linkedin }}<a href="{{ . }}" target="_blank" rel="noopener">LinkedIn</a>{{ end }}
+        </div>
+      </div>
+      <div class="footer-nav">
+        <h3>Quick Links</h3>
+        {{ range .Site.Menus.main }}
+          <a href="{{ .URL }}">{{ .Name }}</a>
+        {{ end }}
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; {{ now.Year }} Min Research Group, {{ .Site.Params.university }}</p>
+    </div>
+  </div>
+</footer>

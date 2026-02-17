@@ -1,0 +1,76 @@
+{{ define "main" }}
+<section class="pi-hero">
+  <div class="container pi-grid">
+    <div class="pi-photo">
+      <img src="/images/team/jihong_min.jpg" alt="Jihong Min">
+    </div>
+    <div class="pi-intro">
+      <h1>Jihong Min</h1>
+      <p class="pi-title text-gold">{{ .Site.Params.pi_title }}, {{ .Site.Params.university }}</p>
+      <p>Jihong Min is currently an NIH T32 postdoctoral research fellow at the California Institute of Technology and will be joining the National University of Singapore as a Presidential Young Professor in Spring 2026.</p>
+      <p>He received his B.S. in Electrical Engineering at University of Illinois at Urbana-Champaign and Ph.D. in Medical Engineering at California Institute of Technology.</p>
+      <p>His research interests include energy harvesting, wearable biosensors, and ingestible electronics.</p>
+      <div class="pi-links">
+        <a href="/pi/#about" class="btn btn-outline">About Me</a>
+        <a href="/files/jihong_min_cv.pdf" class="btn btn-outline" target="_blank">CV</a>
+        <a href="{{ .Site.Params.google_scholar }}" class="btn btn-outline" target="_blank" rel="noopener">Google Scholar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container">
+    <h2 class="section-title text-gold">Research Interests</h2>
+    <p>I am deeply passionate about developing non-invasive biomedical sensor devices that continuously monitor physiochemical markers in-situ to indicate health and fitness, with the goal of optimizing individuals' lifestyles. With a bachelor's degree in Electrical Engineering and a graduate degree in Medical Engineering, I possess a unique capability to achieve development and system-level integration of all aspects of wearable and ingestible sensor devices, including energy harvester development, electronics design, sensor fabrication, system encapsulation, and system validation through human and animal studies.</p>
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="section-title text-navy">Education</h2>
+    {{ $edu := sort .Site.Data.education "Order" "asc" }}
+    {{ range $edu }}
+    <div class="edu-entry">
+      <span class="edu-years">{{ .Years }}</span>
+      <div>
+        <strong>{{ .Degree }}</strong><br>
+        {{ .Institution }}
+        {{ with .Advisor }}<br><em>Advisor: {{ . }}</em>{{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title text-gold">Honors & Awards</h2>
+    {{ $honors := sort .Site.Data.honors "Date" "desc" }}
+    {{ range $honors }}
+    <div class="honor-entry">
+      <span class="honor-date">{{ .Date }}</span>
+      <span>{{ .Award }}</span>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<section class="section bg-light">
+  <div class="container">
+    <h2 class="section-title text-navy">Major Publications</h2>
+    <p><a href="/publications/" class="text-gold">View All Publications</a></p>
+    {{ $pubs := sort (where .Site.Data.publications "Category" "Selected") "Paper_Number" "desc" }}
+    {{ range first 7 $pubs }}
+    <div class="publication-entry">
+      <p>
+        <span class="pub-authors">{{ .Authors }}</span>
+        ({{ .Year }}). {{ .Title }}.
+        <em class="pub-journal">{{ .Journal }}</em>{{ with .Volume_Pages }}, {{ . }}{{ end }}.
+        {{ with .Notes }}<br><span class="pub-note">{{ . }}</span>{{ end }}
+      </p>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

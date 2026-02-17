@@ -301,16 +301,64 @@ def sync_projects():
     return items
 
 
+def get_page_body_text(page_id):
+    """Retrieve the plain text content of a Notion page body (block children)."""
+    blocks = []
+    has_more = True
+    start_cursor = None
+    while has_more:
+        kwargs = {"block_id": page_id}
+        if start_cursor:
+            kwargs["start_cursor"] = start_cursor
+        response = notion.blocks.children.list(**kwargs)
+        blocks.extend(response["results"])
+        has_more = response.get("has_more", False)
+        start_cursor = response.get("next_cursor")
+
+    lines = []
+    for block in blocks:
+        btype = block.get("type", "")
+        if btype in ("paragraph", "heading_1", "heading_2", "heading_3"):
+            rich_text = block.get(btype, {}).get("rich_text", [])
+            line = ""
+            for rt in rich_text:
+                text = rt.get("plain_text", "")
+                annotations = rt.get("annotations", {})
+                if annotations.get("bold"):
+                    line += f"**{text}**"
+                else:
+                    line += text
+            lines.append(line)
+        elif btype == "bulleted_list_item":
+            rich_text = block.get(btype, {}).get("rich_text", [])
+            text = "".join(rt.get("plain_text", "") for rt in rich_text)
+            lines.append(f"- {text}")
+        elif btype == "numbered_list_item":
+            rich_text = block.get(btype, {}).get("rich_text", [])
+            text = "".join(rt.get("plain_text", "") for rt in rich_text)
+            lines.append(f"1. {text}")
+        else:
+            lines.append("")
+    return "\n".join(lines)
+
+
 def sync_cv_only():
-    """Sync CV-only sections database (Research Experience, Teaching, etc.)."""
+    """Sync CV-only sections database (Research Experience, Teaching, etc.).
+    Reads content from page body (rich text) instead of Content property."""
     pages = query_all(DB_IDS["cv_only"])
     items = []
     for page in pages:
         props = page["properties"]
+        page_id = page["id"]
+        # Read the page body for rich text content
+        body = get_page_body_text(page_id)
+        # Fall back to Content property if page body is empty
+        if not body.strip():
+            body = get_text(props.get("Content"))
         items.append({
             "Name": get_text(props.get("Name")),
             "Section": get_select(props.get("Section")),
-            "Content": get_text(props.get("Content")),
+            "Content": body,
             "Order": get_number(props.get("Order")),
         })
     items.sort(key=lambda x: x.get("Order") or 0)
@@ -326,7 +374,12 @@ def write_json(data, filename):
 
 
 def generate_latex_cv(pubs, honors, education, cv_only=None):
-    """Generate a LaTeX CV from the synced data."""
+    """Generate a LaTeX CV from the synced data.
+
+    Section order matches the original Word CV:
+    Education → Research Experience → Honors → Teaching → Conferences →
+    Academic Service → Proposal Writing → Patents → Selected Pubs → Other Pubs
+    """
     cv_dir = os.path.join(os.path.dirname(__file__), "cv")
     os.makedirs(cv_dir, exist_ok=True)
 
@@ -350,7 +403,6 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
             "γ": r"$\gamma$",
             "δ": r"$\delta$",
             "μ": r"$\mu$",
-            "†": r"$\dagger$",
         }
         for old, new in replacements.items():
             text = text.replace(old, new)
@@ -364,6 +416,8 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
         year = pub["Year"]
         # Bold "Min, J." in author list
         authors = authors.replace("Min, J.", r"\textbf{Min, J.}")
+        # Use real dagger symbol
+        authors = authors.replace("†", "$\\dagger$")
         entry = f"{authors} ({year}). {title}. \\textit{{{journal}}}"
         if vol:
             entry += f", {vol}"
@@ -372,7 +426,77 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
             entry += f" {escape_latex(pub['Notes'])}"
         return entry
 
+    def get_cv_section(section_name):
+        """Find a CV-only section by its Section select value."""
+        if not cv_only:
+            return None
+        for item in cv_only:
+            if item["Section"] == section_name:
+                return item
+        return None
+
+    def render_cv_section_body(content):
+        """Render a CV-only section body into LaTeX lines.
+
+        Parses the page body text which uses:
+        - **bold text** for sub-headings (years, roles)
+        - Lines starting with '- ' for bullet items
+        - Plain text for regular paragraphs
+        """
+        result = []
+        in_list = False
+        for line in content.split("\n"):
+            stripped = line.strip()
+            if not stripped:
+                if in_list:
+                    result.append(r"\end{itemize}")
+                    in_list = False
+                result.append("")
+                continue
+
+            if stripped.startswith("- "):
+                if not in_list:
+                    result.append(r"\begin{itemize}[leftmargin=*, nosep]")
+                    in_list = True
+                item_text = stripped[2:]
+                result.append(f"  \\item {escape_latex(item_text)}")
+            else:
+                if in_list:
+                    result.append(r"\end{itemize}")
+                    in_list = False
+                # Handle **bold** markdown
+                import re
+                def bold_replace(m):
+                    return r"\textbf{" + escape_latex(m.group(1)) + "}"
+                latex_line = re.sub(r'\*\*(.+?)\*\*', bold_replace, stripped)
+                # Escape remaining text (parts not already processed)
+                # Since bold_replace already escaped inside bold, we need to handle
+                # the non-bold parts carefully
+                parts = re.split(r'(\*\*.+?\*\*)', stripped)
+                latex_line = ""
+                for part in parts:
+                    bold_match = re.match(r'\*\*(.+?)\*\*', part)
+                    if bold_match:
+                        latex_line += r"\textbf{" + escape_latex(bold_match.group(1)) + "}"
+                    else:
+                        latex_line += escape_latex(part)
+                result.append(latex_line + " \\\\")
+        if in_list:
+            result.append(r"\end{itemize}")
+        return result
+
+    # Section name mapping for LaTeX headers
+    section_map = {
+        "Research Experience": "Research \\& Work Experience",
+        "Teaching & Mentoring": "Teaching and Mentoring",
+        "Conferences & Talks": "Conference Presentations, Poster Sessions, Invited Talks, and Workshops",
+        "Academic Service": "Academic Service",
+        "Proposal Writing": "Proposal Writing Experience",
+        "Patents": "Patents",
+    }
+
     lines = []
+    # Preamble
     lines.append(r"\documentclass[11pt,a4paper]{article}")
     lines.append(r"\usepackage[margin=1in]{geometry}")
     lines.append(r"\usepackage{enumitem}")
@@ -385,6 +509,8 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
     lines.append(r"\setlength{\parindent}{0pt}")
     lines.append(r"\begin{document}")
     lines.append("")
+
+    # Header
     lines.append(r"{\LARGE \textbf{Jihong Min}} \\[6pt]")
     lines.append(r"Presidential Young Professor, Department of Biomedical Engineering \\")
     lines.append(r"National University of Singapore \\")
@@ -392,47 +518,24 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
     lines.append(r"\href{https://scholar.google.com/citations?user=T4pVa1UAAAAJ}{Google Scholar}")
     lines.append("")
 
-    # Education
+    # === 1. Education ===
     lines.append(r"\section{Education}")
     for edu in education:
         lines.append(f"\\textbf{{{escape_latex(edu['Years'])}}} \\hfill {escape_latex(edu['Degree'])} \\\\")
         lines.append(f"{escape_latex(edu['Institution'])}")
         if edu.get("Advisor"):
-            lines.append(f" \\\\ \\textit{{Advisor: {escape_latex(edu['Advisor'])}}}")
+            lines.append(f" \\\\ \\textit{{{escape_latex(edu['Advisor'])}}}")
         lines.append("\\\\[6pt]")
     lines.append("")
 
-    # CV-only sections: Research Experience
-    if cv_only:
-        # Section name mapping for LaTeX
-        section_map = {
-            "Research Experience": "Research \\& Work Experience",
-            "Teaching & Mentoring": "Teaching and Mentoring",
-            "Conferences & Talks": "Conference Presentations, Poster Sessions, Invited Talks, and Workshops",
-            "Academic Service": "Academic Service",
-            "Proposal Writing": "Proposal Writing Experience",
-            "Patents": "Patents",
-        }
-        # Sections to include before Honors (Research Experience only)
-        for item in cv_only:
-            if item["Section"] == "Research Experience":
-                latex_title = section_map.get(item["Section"], item["Section"])
-                lines.append(f"\\section{{{latex_title}}}")
-                for content_line in item["Content"].split("\n"):
-                    content_line = content_line.strip()
-                    if not content_line:
-                        lines.append("\\\\[6pt]")
-                    elif content_line.startswith("- "):
-                        lines.append(f"\\quad {escape_latex(content_line[2:])}")
-                        lines.append("\\\\")
-                    elif "|" in content_line:
-                        parts = content_line.split("|", 1)
-                        lines.append(f"\\textbf{{{escape_latex(parts[0].strip())}}} \\hfill {escape_latex(parts[1].strip())} \\\\")
-                    else:
-                        lines.append(f"{escape_latex(content_line)} \\\\")
-                lines.append("")
+    # === 2. Research & Work Experience ===
+    sec = get_cv_section("Research Experience")
+    if sec:
+        lines.append(f"\\section{{{section_map['Research Experience']}}}")
+        lines.extend(render_cv_section_body(sec["Content"]))
+        lines.append("")
 
-    # Honors
+    # === 3. Honors & Awards ===
     lines.append(r"\section{Honors \& Awards}")
     lines.append(r"\begin{itemize}[leftmargin=*, nosep]")
     for honor in honors:
@@ -440,12 +543,48 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
     lines.append(r"\end{itemize}")
     lines.append("")
 
-    # Selected Publications
+    # === 4. Teaching and Mentoring ===
+    sec = get_cv_section("Teaching & Mentoring")
+    if sec:
+        lines.append(f"\\section{{{section_map['Teaching & Mentoring']}}}")
+        lines.extend(render_cv_section_body(sec["Content"]))
+        lines.append("")
+
+    # === 5. Conference Presentations ===
+    sec = get_cv_section("Conferences & Talks")
+    if sec:
+        lines.append(f"\\section{{{section_map['Conferences & Talks']}}}")
+        lines.extend(render_cv_section_body(sec["Content"]))
+        lines.append("")
+
+    # === 6. Academic Service ===
+    sec = get_cv_section("Academic Service")
+    if sec:
+        lines.append(f"\\section{{{section_map['Academic Service']}}}")
+        lines.extend(render_cv_section_body(sec["Content"]))
+        lines.append("")
+
+    # === 7. Proposal Writing Experience ===
+    sec = get_cv_section("Proposal Writing")
+    if sec:
+        lines.append(f"\\section{{{section_map['Proposal Writing']}}}")
+        lines.extend(render_cv_section_body(sec["Content"]))
+        lines.append("")
+
+    # === 8. Patents ===
+    sec = get_cv_section("Patents")
+    if sec:
+        lines.append(f"\\section{{{section_map['Patents']}}}")
+        lines.extend(render_cv_section_body(sec["Content"]))
+        lines.append("")
+
+    # === 9. Selected Publications ===
     total = len(pubs)
     first_author_count = len([p for p in pubs if p["Is_First_Author"]])
     lines.append(r"\section{Selected Publications}")
     lines.append(f"({total} papers with {first_author_count} as first/co-first author, "
                  f"$>$7000 citations, h-index 23, updated {datetime.now().strftime('%m/%Y')})")
+    lines.append(r"$\dagger$ indicates equal contributions")
     lines.append("")
     lines.append(r"\begin{enumerate}[leftmargin=*, nosep]")
     for pub in selected:
@@ -453,49 +592,13 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
     lines.append(r"\end{enumerate}")
     lines.append("")
 
-    # Other Publications
+    # === 10. Other Publications ===
     lines.append(r"\section{Other Publications}")
     lines.append(r"\begin{enumerate}[leftmargin=*, nosep]")
     for pub in other:
         lines.append(f"  \\item {format_pub_latex(pub)}")
     lines.append(r"\end{enumerate}")
     lines.append("")
-
-    # CV-only sections after publications
-    if cv_only:
-        section_map = {
-            "Research Experience": "Research \\& Work Experience",
-            "Teaching & Mentoring": "Teaching and Mentoring",
-            "Conferences & Talks": "Conference Presentations, Poster Sessions, Invited Talks, and Workshops",
-            "Academic Service": "Academic Service",
-            "Proposal Writing": "Proposal Writing Experience",
-            "Patents": "Patents",
-        }
-        for item in cv_only:
-            if item["Section"] == "Research Experience":
-                continue  # Already added before Honors
-            latex_title = section_map.get(item["Section"], item["Name"])
-            lines.append(f"\\section{{{latex_title}}}")
-            in_list = False
-            content_lines = item["Content"].split("\n")
-            for content_line in content_lines:
-                content_line = content_line.strip()
-                if content_line.startswith("- "):
-                    if not in_list:
-                        lines.append(r"\begin{itemize}[leftmargin=*, nosep]")
-                        in_list = True
-                    lines.append(f"  \\item {escape_latex(content_line[2:])}")
-                else:
-                    if in_list:
-                        lines.append(r"\end{itemize}")
-                        in_list = False
-                    if not content_line:
-                        lines.append("\\vspace{4pt}")
-                    else:
-                        lines.append(f"{escape_latex(content_line)} \\\\")
-            if in_list:
-                lines.append(r"\end{itemize}")
-            lines.append("")
 
     lines.append(r"\end{document}")
 

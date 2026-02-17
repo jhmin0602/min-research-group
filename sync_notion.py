@@ -266,12 +266,23 @@ def parse_body(body_text):
 
 
 def sync_projects():
-    """Sync research projects database."""
+    """Sync research projects database.
+
+    Reads detailed content from the page body (rich text) for a better
+    editing experience in Notion. Falls back to the Body property if
+    the page body is empty.
+    """
     pages = query_all(DB_IDS["projects"])
     items = []
     for page in pages:
         props = page["properties"]
-        body_text = get_text(props.get("Body"))
+        page_id = page["id"]
+
+        # Try page body first, fall back to Body property
+        body_text = get_page_body_text(page_id)
+        if not body_text.strip():
+            body_text = get_text(props.get("Body"))
+
         parsed = parse_body(body_text)
 
         # Extract the intro paragraph from Body (everything before media: or ### )
@@ -302,7 +313,14 @@ def sync_projects():
 
 
 def get_page_body_text(page_id):
-    """Retrieve the plain text content of a Notion page body (block children)."""
+    """Retrieve the plain text content of a Notion page body (block children).
+
+    Preserves formatting markers:
+    - **bold** annotations become **text** markdown
+    - Heading blocks get # / ## / ### prefixes (used by parse_body)
+    - Bullet items get '- ' prefix
+    - Numbered items get '1. ' prefix
+    """
     blocks = []
     has_more = True
     start_cursor = None
@@ -314,6 +332,12 @@ def get_page_body_text(page_id):
         blocks.extend(response["results"])
         has_more = response.get("has_more", False)
         start_cursor = response.get("next_cursor")
+
+    heading_prefix = {
+        "heading_1": "# ",
+        "heading_2": "## ",
+        "heading_3": "### ",
+    }
 
     lines = []
     for block in blocks:
@@ -328,7 +352,8 @@ def get_page_body_text(page_id):
                     line += f"**{text}**"
                 else:
                     line += text
-            lines.append(line)
+            prefix = heading_prefix.get(btype, "")
+            lines.append(f"{prefix}{line}")
         elif btype == "bulleted_list_item":
             rich_text = block.get(btype, {}).get("rich_text", [])
             text = "".join(rt.get("plain_text", "") for rt in rich_text)

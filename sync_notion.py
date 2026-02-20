@@ -448,12 +448,17 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
         authors = authors.replace("Min, J.", r"\textbf{Min, J.}")
         # Use real dagger symbol
         authors = authors.replace("†", "$\\dagger$")
-        entry = f"{authors} ({year}). {title}. \\textit{{{journal}}}"
+        # Journal name: bold italic
+        entry = f"{authors} ({year}). {title}. \\textbf{{\\textit{{{journal}}}}}"
         if vol:
             entry += f", {vol}"
         entry += "."
         if pub.get("Notes"):
-            entry += f" {escape_latex(pub['Notes'])}"
+            notes = escape_latex(pub['Notes'])
+            # Bold "Featured on Journal Cover"
+            notes = notes.replace("Featured on Journal Cover",
+                                  r"\textbf{Featured on Journal Cover}")
+            entry += f" {notes}"
         return entry
 
     def get_cv_section(section_name):
@@ -509,7 +514,14 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
                     result.append(r"\begin{itemize}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]")
                     in_list = True
                 item_text = stripped[2:]
-                result.append(f"  \\item {escape_latex(item_text)}")
+                latex_item = escape_latex(item_text)
+                # Bold "(Invited)" markers and award parentheticals
+                latex_item = latex_item.replace("(Invited)", r"\textbf{(Invited)}")
+                for award in ["Best Poster Award", "Best Paper Award",
+                              "Graduate Student Award"]:
+                    latex_item = latex_item.replace(
+                        f"({award})", r"\textbf{(" + award + ")}")
+                result.append(f"  \\item {latex_item}")
                 i += 1
             else:
                 if in_list:
@@ -572,7 +584,8 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
     lines.append(r"{\LARGE \textbf{Jihong Min}} \\[4pt]")
     lines.append(r"Presidential Young Professor, Department of Biomedical Engineering \\")
     lines.append(r"National University of Singapore \\")
-    lines.append(r"Email: jihong.min@nus.edu.sg \\")
+    lines.append(r"N1 Institute for Health, 28 Medical Dr, Singapore 117456 \\")
+    lines.append(r"Email: jhmin@nus.edu.sg \\")
     lines.append(r"\href{https://scholar.google.com/citations?user=T4pVa1UAAAAJ}{Google Scholar}")
     lines.append("")
 

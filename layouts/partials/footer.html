@@ -6,6 +6,7 @@
         <p><strong>{{ .Site.Params.pi_name }}</strong></p>
         <p>{{ .Site.Params.department }}</p>
         <p>{{ .Site.Params.university }}</p>
+        {{ with .Site.Params.address }}<p>{{ . }}</p>{{ end }}
         <p>Email: <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a></p>
         <div class="social-links">
           {{ with .Site.Params.google_scholar }}<a href="{{ . }}" target="_blank" rel="noopener">Google Scholar</a>{{ end }}

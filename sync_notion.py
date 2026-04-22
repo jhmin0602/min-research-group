@@ -139,6 +139,7 @@ def sync_publications():
             "Paper_Number": get_number(props.get("Paper Number")),
             "Category": get_select(props.get("Category")),
             "Notes": get_text(props.get("Notes")),
+            "Citations": get_number(props.get("Citations")),
         })
     pubs.sort(key=lambda x: x.get("Paper_Number") or 0, reverse=True)
     return pubs
@@ -398,7 +399,7 @@ def write_json(data, filename):
     print(f"  Wrote {len(data)} items to {filename}")
 
 
-def generate_latex_cv(pubs, honors, education, cv_only=None):
+def generate_latex_cv(pubs, honors, education, cv_only=None, photo_path=None, citation_stats=None):
     """Generate a LaTeX CV from the synced data.
 
     Section order matches the original Word CV:
@@ -407,6 +408,13 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
 
     Uses table-based layout for Education (matching the original Word CV)
     and tight spacing between role headers and bullet items.
+
+    Parameters added for academic-profile-update skill:
+    - photo_path: optional path to headshot image; when given, emits a
+      two-column header (name+affil on left, photo on right). Default None
+      preserves original text-only header.
+    - citation_stats: optional dict with {'total': int, 'h_index': int}.
+      When given, replaces the hardcoded Selected Publications footer line.
     """
     import re
 
@@ -573,6 +581,8 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
     lines.append(r"\usepackage{charter}")
     lines.append(r"\usepackage{titlesec}")
     lines.append(r"\usepackage{array}")
+    if photo_path:
+        lines.append(r"\usepackage{graphicx}")
     lines.append(r"\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]")
     lines.append(r"\titlespacing{\section}{0pt}{10pt}{4pt}")
     lines.append(r"\setlength{\parindent}{0pt}")
@@ -580,14 +590,35 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
     lines.append(r"\begin{document}")
     lines.append("")
 
-    # Header
-    lines.append(r"{\LARGE \textbf{Jihong Min}} \\[4pt]")
-    lines.append(r"Presidential Young Professor, Department of Biomedical Engineering \\")
-    lines.append(r"National University of Singapore \\")
-    lines.append(r"N1 Institute for Health, 28 Medical Dr, Singapore 117456 \\")
-    lines.append(r"Email: jhmin@nus.edu.sg \\")
-    lines.append(r"\href{https://scholar.google.com/citations?user=T4pVa1UAAAAJ}{Google Scholar}")
-    lines.append("")
+    # Header — two-column with photo if photo_path is given, else text-only
+    if photo_path:
+        # LaTeX needs forward slashes; also wrap in graphicx-friendly path
+        photo_tex = str(photo_path).replace("\\", "/")
+        lines.append(r"\noindent")
+        lines.append(r"\begin{minipage}[t]{0.75\textwidth}")
+        lines.append(r"\vspace{0pt}")
+        lines.append(r"{\LARGE \textbf{Jihong Min}} \\[4pt]")
+        lines.append(r"Presidential Young Professor, Department of Biomedical Engineering \\")
+        lines.append(r"National University of Singapore \\")
+        lines.append(r"N1 Institute for Health, 28 Medical Dr, Singapore 117456 \\")
+        lines.append(r"Email: jhmin@nus.edu.sg \\")
+        lines.append(r"\href{https://scholar.google.com/citations?user=T4pVa1UAAAAJ}{Google Scholar}")
+        lines.append(r"\end{minipage}%")
+        lines.append(r"\hfill")
+        lines.append(r"\begin{minipage}[t]{0.22\textwidth}")
+        lines.append(r"\vspace{0pt}")
+        lines.append(r"\raggedleft")
+        lines.append(r"\includegraphics[width=\textwidth]{" + photo_tex + r"}")
+        lines.append(r"\end{minipage}")
+        lines.append("")
+    else:
+        lines.append(r"{\LARGE \textbf{Jihong Min}} \\[4pt]")
+        lines.append(r"Presidential Young Professor, Department of Biomedical Engineering \\")
+        lines.append(r"National University of Singapore \\")
+        lines.append(r"N1 Institute for Health, 28 Medical Dr, Singapore 117456 \\")
+        lines.append(r"Email: jhmin@nus.edu.sg \\")
+        lines.append(r"\href{https://scholar.google.com/citations?user=T4pVa1UAAAAJ}{Google Scholar}")
+        lines.append("")
 
     # === 1. Education (table-based layout matching original Word CV) ===
     lines.append(r"\section{Education}")
@@ -664,8 +695,14 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
     total = len(pubs)
     first_author_count = len([p for p in pubs if p["Is_First_Author"]])
     lines.append(r"\section{Selected Publications}")
-    lines.append(f"({total} papers with {first_author_count} as first/co-first author, "
-                 f"$>$7000 citations, h-index 23, updated {datetime.now().strftime('%m/%Y')})")
+    if citation_stats and citation_stats.get("total"):
+        cite_str = f"{citation_stats['total']:,} citations"
+        h_str = f"h-index {citation_stats.get('h_index', '?')}"
+        lines.append(f"({total} papers with {first_author_count} as first/co-first author, "
+                     f"{cite_str}, {h_str}, updated {datetime.now().strftime('%m/%Y')})")
+    else:
+        lines.append(f"({total} papers with {first_author_count} as first/co-first author, "
+                     f"$>$7000 citations, h-index 23, updated {datetime.now().strftime('%m/%Y')})")
     lines.append(r"$\dagger$ indicates equal contributions")
     lines.append("")
     lines.append(r"\begin{enumerate}[leftmargin=*, itemsep=2pt, parsep=0pt, topsep=2pt]")
@@ -689,6 +726,131 @@ def generate_latex_cv(pubs, honors, education, cv_only=None):
         f.write("\n".join(lines))
     print(f"  Generated LaTeX CV: {tex_path}")
     print("  To compile: cd cv && pdflatex jihong_min_cv.tex")
+
+
+def generate_latex_publist(pubs, citation_stats=None, out_dir=None):
+    """Generate a standalone List of Publications LaTeX file — split into
+    Selected and Other sections, with per-paper citation counts appended when
+    the Publications DB's 'Citations' field is populated.
+
+    Produced for grant submissions that require a separate pub list PDF
+    (e.g., NRF Fellowship, NMRC, MOE AcRF). Uses the same preamble + formatting
+    conventions as the main CV for visual consistency.
+
+    Parameters:
+    - pubs: list from sync_publications() (includes 'Citations' field)
+    - citation_stats: optional {'total': int, 'h_index': int} for header
+    - out_dir: directory to write jihong_min_publist.tex (defaults to ./cv)
+    """
+    if out_dir is None:
+        out_dir = os.path.join(os.path.dirname(__file__), "cv")
+    os.makedirs(out_dir, exist_ok=True)
+
+    selected = [p for p in pubs if p.get("Category") == "Selected"]
+    selected.sort(key=lambda x: x.get("Paper_Number") or 0, reverse=True)
+    other = [p for p in pubs if p.get("Category") != "Selected"]
+    other.sort(key=lambda x: x.get("Paper_Number") or 0, reverse=True)
+
+    def escape_latex(text):
+        if not text:
+            return ""
+        replacements = {
+            "&": r"\&", "%": r"\%", "#": r"\#", "_": r"\_",
+            "~": r"\textasciitilde{}",
+            "α": r"$\alpha$", "β": r"$\beta$", "γ": r"$\gamma$",
+            "δ": r"$\delta$", "μ": r"$\mu$",
+        }
+        for old, new in replacements.items():
+            text = text.replace(old, new)
+        return text
+
+    def format_pub_with_citations(pub):
+        authors = escape_latex(pub["Authors"])
+        title = escape_latex(pub["Title"])
+        journal = escape_latex(pub["Journal"])
+        vol = escape_latex(pub["Volume_Pages"])
+        year = pub["Year"]
+        authors = authors.replace("Min, J.", r"\textbf{Min, J.}")
+        authors = authors.replace("†", "$\\dagger$")
+        entry = f"{authors} ({year}). {title}. \\textbf{{\\textit{{{journal}}}}}"
+        if vol:
+            entry += f", {vol}"
+        entry += "."
+        if pub.get("Notes"):
+            notes = escape_latex(pub['Notes'])
+            notes = notes.replace("Featured on Journal Cover",
+                                  r"\textbf{Featured on Journal Cover}")
+            entry += f" {notes}"
+        cites = pub.get("Citations")
+        if cites is not None:
+            entry += f" \\textit{{({cites} citation{'s' if cites != 1 else ''})}}"
+        return entry
+
+    lines = []
+    lines.append(r"\documentclass[11pt,a4paper]{article}")
+    lines.append(r"\usepackage[margin=0.75in]{geometry}")
+    lines.append(r"\usepackage{enumitem}")
+    lines.append(r"\usepackage{hyperref}")
+    lines.append(r"\usepackage[T1]{fontenc}")
+    lines.append(r"\usepackage{charter}")
+    lines.append(r"\usepackage{titlesec}")
+    lines.append(r"\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]")
+    lines.append(r"\titlespacing{\section}{0pt}{10pt}{4pt}")
+    lines.append(r"\setlength{\parindent}{0pt}")
+    lines.append(r"\setlength{\parskip}{0pt}")
+    lines.append(r"\begin{document}")
+    lines.append("")
+
+    # Header
+    lines.append(r"{\LARGE \textbf{Jihong Min --- List of Publications}} \\[4pt]")
+    lines.append(r"Presidential Young Professor, Department of Biomedical Engineering \\")
+    lines.append(r"National University of Singapore \\")
+    lines.append(r"\href{https://scholar.google.com/citations?user=T4pVa1UAAAAJ}{Google Scholar}")
+    lines.append("")
+
+    # Summary line
+    total = len(pubs)
+    first_author = len([p for p in pubs if p["Is_First_Author"]])
+    if citation_stats and citation_stats.get("total"):
+        summary = (f"{total} papers ({first_author} as first/co-first author), "
+                   f"{citation_stats['total']:,} total citations, "
+                   f"h-index {citation_stats.get('h_index', '?')}, "
+                   f"updated {datetime.now().strftime('%B %Y')}.")
+    else:
+        summary = (f"{total} papers ({first_author} as first/co-first author), "
+                   f"updated {datetime.now().strftime('%B %Y')}. "
+                   f"Citation counts per paper from Google Scholar.")
+    lines.append(summary)
+    lines.append("")
+    lines.append(r"$\dagger$ indicates equal contributions")
+    lines.append("")
+
+    # Selected
+    if selected:
+        lines.append(r"\section{Selected Publications}")
+        lines.append(r"\begin{enumerate}[leftmargin=*, itemsep=3pt, parsep=0pt, topsep=2pt]")
+        for pub in selected:
+            lines.append(f"  \\item {format_pub_with_citations(pub)}")
+        lines.append(r"\end{enumerate}")
+        lines.append("")
+
+    # Other
+    if other:
+        lines.append(r"\section{Other Publications}")
+        lines.append(r"\begin{enumerate}[leftmargin=*, itemsep=3pt, parsep=0pt, topsep=2pt]")
+        for pub in other:
+            lines.append(f"  \\item {format_pub_with_citations(pub)}")
+        lines.append(r"\end{enumerate}")
+        lines.append("")
+
+    lines.append(r"\end{document}")
+
+    tex_path = os.path.join(out_dir, "jihong_min_publist.tex")
+    with open(tex_path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+    print(f"  Generated LaTeX Pub List: {tex_path}")
+    print("  To compile: cd cv && pdflatex jihong_min_publist.tex")
+    return tex_path
 
 
 def main():

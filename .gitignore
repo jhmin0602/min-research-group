@@ -6,6 +6,23 @@ resources/
 # Environment variables (contains API keys)
 .env
 
+# Claude Code config (may contain secrets / permissions with API tokens)
+.claude/
+**/.claude/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Leftover test artifacts
+cv/font_test.pdf
+
+# Scholar citation cache (regenerable locally by scholar_scrape.py)
+data/scholar-cache.json
+
+# Local orchestration scripts (PI-specific; not for public repo)
+websiteandcvsync.bat
+
 # OS files
 .DS_Store
 Thumbs.db

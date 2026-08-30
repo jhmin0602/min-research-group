@@ -1,5 +1,95 @@
 [
   {
+    "Title": "BeetleBot: An integrated bioinspired soft robot for multimodal sensing and adaptive interaction",
+    "Authors": "Kim, I., Yao, D. R., Yin, S., Tran-Ngoc, P. T., Min, J., Ng, N., Heng, W., Li, J., Sadri, B., Sato, H., Kim, S. O., & Gao, W.",
+    "Year": 2026,
+    "Journal": "Science Advances",
+    "Volume_Pages": "12(34), eaeg8849",
+    "DOI": "https://doi.org/10.1126/sciadv.aeg8849",
+    "PDF_Link": "",
+    "Is_First_Author": false,
+    "Featured_on_Cover": false,
+    "Paper_Number": 34,
+    "Category": "Other",
+    "Notes": "",
+    "Citations": 0
+  },
+  {
+    "Title": "Human-inspired time-series health evaluation with an adaptive multimodal electronic skin",
+    "Authors": "Xu, C., Zheng, H., Heng, W., Liu, R., MarionSims, J., Li, J., Jin, P., Tay, R. Y., Min, J., Wang, G., Yue, Y., & Gao, W.",
+    "Year": 2026,
+    "Journal": "Science Advances",
+    "Volume_Pages": "12(31), eaeg5606",
+    "DOI": "https://doi.org/10.1126/sciadv.aeg5606",
+    "PDF_Link": "",
+    "Is_First_Author": false,
+    "Featured_on_Cover": false,
+    "Paper_Number": 33,
+    "Category": "Other",
+    "Notes": "",
+    "Citations": 0
+  },
+  {
+    "Title": "Strain-isolated microneedles for ambulatory hormonal and metabolic monitoring",
+    "Authors": "Kim, G., Cho, S., Ahn, H., Wang, C., Han, H., Ma, X., Kim, M.-J., Qu, J., Min, J., & Gao, W.",
+    "Year": 2026,
+    "Journal": "Nature Nanotechnology",
+    "Volume_Pages": "",
+    "DOI": "https://doi.org/10.1038/s41565-026-02247-5",
+    "PDF_Link": "",
+    "Is_First_Author": false,
+    "Featured_on_Cover": false,
+    "Paper_Number": 32,
+    "Category": "Other",
+    "Notes": "",
+    "Citations": 0
+  },
+  {
+    "Title": "AI-powered closed-loop wearable bioelectronics for personalized and autonomous healthcare",
+    "Authors": "Gao, B., Ge, Z., Sun, X., Lin, B., Gao, Y., Min, J., Zhang, Q., Rogers, J. A., Yu, X., Gao, W., & Lim, C. T.",
+    "Year": 2026,
+    "Journal": "Nature Sensors",
+    "Volume_Pages": "1, 667-680",
+    "DOI": "https://doi.org/10.1038/s44460-026-00105-4",
+    "PDF_Link": "",
+    "Is_First_Author": false,
+    "Featured_on_Cover": false,
+    "Paper_Number": 31,
+    "Category": "Other",
+    "Notes": "",
+    "Citations": 1
+  },
+  {
+    "Title": "Strain-insensitive wet-tissue-adhesive biphasic bioelectronics for physicochemical monitoring and adaptive therapy",
+    "Authors": "Li, J., Fan, K., Ma, X., Wang, C., Min, J., Chen, Y., Song, Y., Xu, Y., & Gao, W.",
+    "Year": 2026,
+    "Journal": "Nature Materials",
+    "Volume_Pages": "",
+    "DOI": "https://doi.org/10.1038/s41563-026-02624-4",
+    "PDF_Link": "",
+    "Is_First_Author": false,
+    "Featured_on_Cover": false,
+    "Paper_Number": 30,
+    "Category": "Other",
+    "Notes": "",
+    "Citations": 4
+  },
+  {
+    "Title": "Strain-resilient intrinsically stretchable electrochemical biointerfaces",
+    "Authors": "Xu, Y., Ma, X., Fan, K., Min, J., Qu, J., Heng, W., Li, J., Tang, S., Kim, G., Liu, R., Yin, S., Li, W., & Gao, W.",
+    "Year": 2026,
+    "Journal": "Science",
+    "Volume_Pages": "392(6801), eaed1630",
+    "DOI": "https://doi.org/10.1126/science.aed1630",
+    "PDF_Link": "",
+    "Is_First_Author": false,
+    "Featured_on_Cover": false,
+    "Paper_Number": 29,
+    "Category": "Other",
+    "Notes": "",
+    "Citations": 4
+  },
+  {
     "Title": "A battery-free smart mask for long-term exhaled breath biochemical sensing",
     "Authors": "Heng, W., Putz, C., Tang, W., Min, J., Lehner, L., Demchyshyn, S., Kim, G., Wang, C., Hailegnaw, B., Rippatha, E., Scharber, M., Kim, M., Chen, Y., Fan, Z., Kaltenbrunner, M., Gao, W.",
     "Year": 2026,
@@ -12,7 +102,7 @@
     "Paper_Number": 28,
     "Category": "Other",
     "Notes": "",
-    "Citations": 0
+    "Citations": 10
   },
   {
     "Title": "A bioinspired microfluidic wearable sensor for multiday sweat sampling, transport, and metabolic analysis",
@@ -27,7 +117,7 @@
     "Paper_Number": 27,
     "Category": "Other",
     "Notes": "",
-    "Citations": 37
+    "Citations": 80
   },
   {
     "Title": "A microfluidic wearable device for wound exudate management and continuous in situ analysis of wound biomarkers",
@@ -42,7 +132,7 @@
     "Paper_Number": 26,
     "Category": "Other",
     "Notes": "",
-    "Citations": 51
+    "Citations": 101
   },
   {
     "Title": "Stressomic: A wearable microfluidic biosensor for dynamic profiling of multiple stress hormones in sweat",
@@ -57,7 +147,7 @@
     "Paper_Number": 25,
     "Category": "Other",
     "Notes": "",
-    "Citations": 35
+    "Citations": 77
   },
   {
     "Title": "Continuous biochemical profiling of the gastrointestinal tract using a multiparametric ingestible capsule",
@@ -72,7 +162,7 @@
     "Paper_Number": 24,
     "Category": "Selected",
     "Notes": "Featured on Journal Cover",
-    "Citations": 35
+    "Citations": 62
   },
   {
     "Title": "Printable molecule-selective core-shell nanoparticles for wearable and implantable sensing",
@@ -87,7 +177,7 @@
     "Paper_Number": 23,
     "Category": "Other",
     "Notes": "",
-    "Citations": 72
+    "Citations": 118
   },
   {
     "Title": "A smart mask for exhaled breath condensate harvesting and analysis",
@@ -102,7 +192,7 @@
     "Paper_Number": 22,
     "Category": "Selected",
     "Notes": "",
-    "Citations": 154
+    "Citations": 214
   },
   {
     "Title": "A physicochemical-sensing electronic skin for stress response monitoring",
@@ -117,7 +207,7 @@
     "Paper_Number": 21,
     "Category": "Other",
     "Notes": "",
-    "Citations": 345
+    "Citations": 422
   },
   {
     "Title": "A wearable aptamer nanobiosensor for non-invasive female hormone monitoring",
@@ -132,7 +222,7 @@
     "Paper_Number": 20,
     "Category": "Other",
     "Notes": "",
-    "Citations": 402
+    "Citations": 480
   },
   {
     "Title": "3D-printed epifluidic electronic skin for machine learning-powered multimodal health surveillance",
@@ -147,7 +237,7 @@
     "Paper_Number": 19,
     "Category": "Other",
     "Notes": "",
-    "Citations": 228
+    "Citations": 258
   },
   {
     "Title": "Battery-Free Wearable Electrochemical Sweat Sensors",
@@ -162,7 +252,7 @@
     "Paper_Number": 18,
     "Category": "Other",
     "Notes": "",
-    "Citations": 1
+    "Citations": 2
   },
   {
     "Title": "Physically defined long-term and short-term synapses for the development of reconfigurable analog-type operators capable of performing health care tasks",
@@ -177,7 +267,7 @@
     "Paper_Number": 17,
     "Category": "Other",
     "Notes": "",
-    "Citations": 53
+    "Citations": 61
   },
   {
     "Title": "An autonomous wearable biosensor powered by a perovskite solar cell",
@@ -192,7 +282,7 @@
     "Paper_Number": 16,
     "Category": "Selected",
     "Notes": "Featured on Journal Cover",
-    "Citations": 347
+    "Citations": 395
   },
   {
     "Title": "Skin-interfaced wearable sweat sensors for precision medicine",
@@ -207,7 +297,7 @@
     "Paper_Number": 15,
     "Category": "Selected",
     "Notes": "Featured on Journal Cover",
-    "Citations": 624
+    "Citations": 739
   },
   {
     "Title": "A wireless patch for the monitoring of C-reactive protein in sweat",
@@ -222,7 +312,7 @@
     "Paper_Number": 14,
     "Category": "Selected",
     "Notes": "",
-    "Citations": 368
+    "Citations": 429
   },
   {
     "Title": "A stretchable wireless wearable bioelectronic system for multiplexed monitoring and combination treatment of infected chronic wounds",
@@ -237,7 +327,7 @@
     "Paper_Number": 13,
     "Category": "Other",
     "Notes": "",
-    "Citations": 365
+    "Citations": 437
   },
   {
     "Title": "A Computationally Assisted Approach for Designing Wearable Biosensors toward Non-invasive Personalized Molecular Analysis",
@@ -252,7 +342,7 @@
     "Paper_Number": 12,
     "Category": "Other",
     "Notes": "",
-    "Citations": 89
+    "Citations": 95
   },
   {
     "Title": "Microcracked conductors for wearable sensors",
@@ -267,7 +357,7 @@
     "Paper_Number": 11,
     "Category": "Selected",
     "Notes": "",
-    "Citations": 9
+    "Citations": 10
   },
   {
     "Title": "A wearable electrochemical biosensor for the monitoring of metabolites and nutrients",
@@ -282,7 +372,7 @@
     "Paper_Number": 10,
     "Category": "Selected",
     "Notes": "Featured on Journal Cover",
-    "Citations": 861
+    "Citations": 971
   },
   {
     "Title": "All-printed soft human-machine interface for robotic physicochemical sensing",
@@ -297,7 +387,7 @@
     "Paper_Number": 9,
     "Category": "Other",
     "Notes": "Featured on Journal Cover",
-    "Citations": 360
+    "Citations": 392
   },
   {
     "Title": "Wearable electrochemical biosensors in North America",
@@ -312,7 +402,7 @@
     "Paper_Number": 8,
     "Category": "Selected",
     "Notes": "",
-    "Citations": 291
+    "Citations": 304
   },
   {
     "Title": "SARS-CoV-2 RapidPlex: a graphene-based multiplexed telemedicine platform for rapid and low-cost COVID-19 diagnosis and monitoring",
@@ -327,7 +417,7 @@
     "Paper_Number": 7,
     "Category": "Other",
     "Notes": "Featured on Journal Cover",
-    "Citations": 512
+    "Citations": 528
   },
   {
     "Title": "Investigation of cortisol dynamics in human sweat using a graphene-based wireless mHealth system",
@@ -342,7 +432,7 @@
     "Paper_Number": 6,
     "Category": "Other",
     "Notes": "",
-    "Citations": 487
+    "Citations": 524
   },
   {
     "Title": "A laser-engraved wearable sensor for sensitive detection of uric acid and tyrosine in sweat",
@@ -357,7 +447,7 @@
     "Paper_Number": 5,
     "Category": "Other",
     "Notes": "",
-    "Citations": 1273
+    "Citations": 1363
   },
   {
     "Title": "Biofuel-powered soft electronic skin with multiplexed and wireless sensing for human-machine interfaces",
@@ -372,7 +462,7 @@
     "Paper_Number": 4,
     "Category": "Other",
     "Notes": "",
-    "Citations": 694
+    "Citations": 724
   },
   {
     "Title": "Wireless battery-free wearable sweat sensor powered by human motion",
@@ -387,7 +477,7 @@
     "Paper_Number": 3,
     "Category": "Selected",
     "Notes": "",
-    "Citations": 656
+    "Citations": 706
   },
   {
     "Title": "Robotics in the gut",
@@ -402,7 +492,7 @@
     "Paper_Number": 2,
     "Category": "Selected",
     "Notes": "",
-    "Citations": 104
+    "Citations": 110
   },
   {
     "Title": "Wearable and implantable electronics: moving toward precision therapy",
@@ -417,6 +507,6 @@
     "Paper_Number": 1,
     "Category": "Other",
     "Notes": "",
-    "Citations": 252
+    "Citations": 261
   }
 ]

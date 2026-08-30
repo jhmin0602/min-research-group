@@ -399,6 +399,29 @@ def write_json(data, filename):
     print(f"  Wrote {len(data)} items to {filename}")
 
 
+# Selected Publications ordering — by importance, NOT chronology (PI directive 2026-06-18).
+# Lead-author flagship works first (the two major Nature Electronics papers), then the
+# co-first Nature Biomedical Engineering paper, then the co-first Science Advances paper,
+# then the Chemical Reviews lead-author review. Any Selected paper not listed here falls
+# to the end, ordered most-recent-first. Values are Paper Number (see Publications DB).
+# NOTE: "Microcracked conductors" (Paper 11, Nat. Electronics 2022) is intentionally
+# excluded from the flagship tier — it is a short News & Views piece, so it sorts with
+# "the rest". Revisit this list when a new flagship paper should be promoted.
+SELECTED_PRIORITY = [24, 16, 10, 3, 15]
+
+
+def selected_sort_key(pub):
+    """Sort key for Selected publications.
+
+    Papers listed in SELECTED_PRIORITY come first, in that exact order. Everything
+    else follows, most-recent-first (by Paper Number descending).
+    """
+    num = pub.get("Paper_Number") or 0
+    if num in SELECTED_PRIORITY:
+        return (0, SELECTED_PRIORITY.index(num))
+    return (1, -num)
+
+
 def generate_latex_cv(pubs, honors, education, cv_only=None, photo_path=None, citation_stats=None):
     """Generate a LaTeX CV from the synced data.
 
@@ -422,9 +445,9 @@ def generate_latex_cv(pubs, honors, education, cv_only=None, photo_path=None, ci
     os.makedirs(cv_dir, exist_ok=True)
 
     selected = [p for p in pubs if p["Category"] == "Selected"]
-    selected.sort(key=lambda x: x.get("Paper_Number") or 0, reverse=True)
+    selected.sort(key=selected_sort_key)  # by importance (SELECTED_PRIORITY), then recency
     other = [p for p in pubs if p["Category"] != "Selected"]
-    other.sort(key=lambda x: x.get("Paper_Number") or 0, reverse=True)
+    other.sort(key=lambda x: x.get("Paper_Number") or 0, reverse=True)  # by time, newest first
 
     def escape_latex(text):
         """Escape special LaTeX characters."""
@@ -747,9 +770,9 @@ def generate_latex_publist(pubs, citation_stats=None, out_dir=None):
     os.makedirs(out_dir, exist_ok=True)
 
     selected = [p for p in pubs if p.get("Category") == "Selected"]
-    selected.sort(key=lambda x: x.get("Paper_Number") or 0, reverse=True)
+    selected.sort(key=selected_sort_key)  # by importance (SELECTED_PRIORITY), then recency
     other = [p for p in pubs if p.get("Category") != "Selected"]
-    other.sort(key=lambda x: x.get("Paper_Number") or 0, reverse=True)
+    other.sort(key=lambda x: x.get("Paper_Number") or 0, reverse=True)  # by time, newest first
 
     def escape_latex(text):
         if not text:

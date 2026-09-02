@@ -621,7 +621,7 @@ def generate_latex_cv(pubs, honors, education, cv_only=None, photo_path=None, ci
         lines.append(r"\begin{minipage}[t]{0.75\textwidth}")
         lines.append(r"\vspace{0pt}")
         lines.append(r"{\LARGE \textbf{Jihong Min}} \\[4pt]")
-        lines.append(r"Presidential Young Professor, Department of Biomedical Engineering \\")
+        lines.append(r"Assistant Professor, Department of Biomedical Engineering \\")
         lines.append(r"National University of Singapore \\")
         lines.append(r"N1 Institute for Health, 28 Medical Dr, Singapore 117456 \\")
         lines.append(r"Email: jhmin@nus.edu.sg \\")
@@ -636,7 +636,7 @@ def generate_latex_cv(pubs, honors, education, cv_only=None, photo_path=None, ci
         lines.append("")
     else:
         lines.append(r"{\LARGE \textbf{Jihong Min}} \\[4pt]")
-        lines.append(r"Presidential Young Professor, Department of Biomedical Engineering \\")
+        lines.append(r"Assistant Professor, Department of Biomedical Engineering \\")
         lines.append(r"National University of Singapore \\")
         lines.append(r"N1 Institute for Health, 28 Medical Dr, Singapore 117456 \\")
         lines.append(r"Email: jhmin@nus.edu.sg \\")
@@ -826,7 +826,7 @@ def generate_latex_publist(pubs, citation_stats=None, out_dir=None):
 
     # Header
     lines.append(r"{\LARGE \textbf{Jihong Min --- List of Publications}} \\[4pt]")
-    lines.append(r"Presidential Young Professor, Department of Biomedical Engineering \\")
+    lines.append(r"Assistant Professor, Department of Biomedical Engineering \\")
     lines.append(r"National University of Singapore \\")
     lines.append(r"\href{https://scholar.google.com/citations?user=T4pVa1UAAAAJ}{Google Scholar}")
     lines.append("")
